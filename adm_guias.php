@@ -157,7 +157,7 @@
 							$query .= " AND g.fecha_creacion='".$fechaI."' "; 
 						}
 						
-						$query .= " ORDER BY g.fecha_creacion DESC ";	
+						$query .= " ORDER BY g.fecha_creacion DESC, id DESC ";	
 						
 						$result = obtenerResultset($link,$query);
 

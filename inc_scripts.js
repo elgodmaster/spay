@@ -68,7 +68,7 @@ function validate_busqueda_cliente_form(form)
 //************************************************
 
 //************************************************
-// VALIDATE_ENVIAR_PASSWORD_FORM
+// VALIDATE_FACTURA_FORM
 //************************************************
 function validate_factura_form(form)
 {
@@ -78,21 +78,23 @@ function validate_factura_form(form)
 		form.txtFactura.focus();
 		return false;
 	}		
-	var flete = form.txtFlete.value;
-	flete = flete.substring(0,flete.indexOf(',')+3);
-	flete = flete.replace(',','.');	
-	if (form.txtFlete.value=="" || form.txtFlete.value=="0,00 %") {
-		document.getElementById("mensError").innerHTML = 
-		"<img align='texttop' src='images/icons/cancel.png' border='0'  />  POR FAVOR INDIQUE EL % FLETE.";
-		form.txtFlete.focus();
-		return false;
+	if(form.tipo_cobro.value=="V") {
+		var flete = form.txtFlete.value;
+		flete = flete.substring(0,flete.indexOf(',')+3);
+		flete = flete.replace(',','.');	
+		if (form.txtFlete.value=="" || form.txtFlete.value=="0,00 %") {
+			document.getElementById("mensError").innerHTML = 
+			"<img align='texttop' src='images/icons/cancel.png' border='0'  />  POR FAVOR INDIQUE EL % FLETE.";
+			form.txtFlete.focus();
+			return false;
+		}
+		if (isNaN(flete)) {
+			document.getElementById("mensError").innerHTML = 
+			"<img align='texttop' src='images/icons/cancel.png' border='0'  />  EL % FLETE DEBE SER NUMERICO.";
+			form.txtFlete.focus();
+			return false;
+		}		
 	}
-	if (isNaN(flete)) {
-		document.getElementById("mensError").innerHTML = 
-		"<img align='texttop' src='images/icons/cancel.png' border='0'  />  EL % FLETE DEBE SER NUMERICO.";
-		form.txtFlete.focus();
-		return false;
-	}		
 	if(getCheckedValue(form.cmbSeguro)=="S") {
 		var seguro = form.txtSeguro.value;
 		seguro = seguro.substring(0,seguro.indexOf(',')+3);
@@ -116,7 +118,7 @@ function validate_factura_form(form)
 //************************************************
 
 //************************************************
-// VALIDATE_ENVIAR_PASSWORD_FORM
+// VALIDATE_FACTURA_PROVEEDOR_FORM
 //************************************************
 function validate_factura_proveedor_form(form)
 {
@@ -126,21 +128,23 @@ function validate_factura_proveedor_form(form)
 		form.txtFactura.focus();
 		return false;
 	}	
-	var flete = form.txtFlete.value;
-	flete = flete.substring(0,flete.indexOf(',')+3);
-	flete = flete.replace(',','.');	
-	if (form.txtFlete.value=="" || form.txtFlete.value=="0,00 %") {
-		document.getElementById("mensError").innerHTML = 
-		"<img align='texttop' src='images/icons/cancel.png' border='0'  />  POR FAVOR INDIQUE EL % FLETE.";
-		form.txtFlete.focus();
-		return false;
+	if(form.tipo_cobro.value=="V") {
+		var flete = form.txtFlete.value;
+		flete = flete.substring(0,flete.indexOf(',')+3);
+		flete = flete.replace(',','.');	
+		if (form.txtFlete.value=="" || form.txtFlete.value=="0,00 %") {
+			document.getElementById("mensError").innerHTML = 
+			"<img align='texttop' src='images/icons/cancel.png' border='0'  />  POR FAVOR INDIQUE EL % FLETE.";
+			form.txtFlete.focus();
+			return false;
+		}
+		if (isNaN(flete)) {
+			document.getElementById("mensError").innerHTML = 
+			"<img align='texttop' src='images/icons/cancel.png' border='0'  />  EL % FLETE DEBE SER NUMERICO.";
+			form.txtFlete.focus();
+			return false;
+		}		
 	}
-	if (isNaN(flete)) {
-		document.getElementById("mensError").innerHTML = 
-		"<img align='texttop' src='images/icons/cancel.png' border='0'  />  EL % FLETE DEBE SER NUMERICO.";
-		form.txtFlete.focus();
-		return false;
-	}	
 	if(getCheckedValue(form.cmbSeguro)=="S") {
 		var seguro = form.txtSeguro.value;
 		seguro = seguro.substring(0,seguro.indexOf(',')+3);

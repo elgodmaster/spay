@@ -180,7 +180,7 @@
 							$query .= " AND e.fecha_creacion='".$fechaI."' "; 
 						}
 						
-						$query .= " ORDER BY e.fecha_creacion DESC, e.ind_envio, e.remesa, e.factura ";	
+						$query .= " ORDER BY e.fecha_creacion DESC, e.ind_envio, e.remesa, e.factura, e.id DESC ";	
 						
 						$result = obtenerResultset($link,$query);
 
