@@ -45,8 +45,8 @@
                     		</td>
                 		</tr> 
                 	</table>
-                	<p align="left">
-                     <strong style="font-size:22px">
+                	<p>
+                     <strong style="font-size:22px; font-family:Arial, Helvetica, sans-serif; padding-left:15px">
                      SE&Ntilde;ORES: 
                      <?php echo obtenerProveedorStr($link, $factura->id_proveedor); ?>
                      </strong>
@@ -71,8 +71,8 @@
 						if(mysql_num_rows($result)>0) {
  ?>    
                 	<p>&nbsp;</p>	
-                	<p  align="left">
-                	A CONTINUACION LE RELACIONAMOS FACTURAS DE MERCANCIA COBRADAS POR FLETE
+                	<p style="font-size:15px; font-family:Arial, Helvetica, sans-serif; padding-left:15px">
+                	A CONTINUACION LE RELACIONAMOS FACTURAS DE MERCANCIA ENTREGADA <br />CUYO FLETE NO HA SIDO PAGADO
                 	</p>
 					<table style="padding-left:10px; font-size:11px; font-family:Arial, Helvetica, sans-serif; color:#999" width="520px">
                 		<tr>
@@ -163,8 +163,8 @@
 						if(mysql_num_rows($result)>0) {
  ?>              			
                 	<p>&nbsp;</p>	
-                	<p  align="left">
-                	A CONTINUACION LE RELACIONAMOS FACTURAS DE MERCANCIA COBRADAS POR MONTO FIJO
+                	<p style="font-size:15px; font-family:Arial, Helvetica, sans-serif; padding-left:15px">
+                	A CONTINUACION LE RELACIONAMOS FACTURAS DE MERCANCIA ENTREGADA <br />CUYO FLETE NO HA SIDO PAGADO
                 	</p>
 					<table style="padding-left:10px; font-size:11px; font-family:Arial, Helvetica, sans-serif; color:#999" width="520px">
                 		<tr>
@@ -253,8 +253,8 @@
 						if(mysql_num_rows($result)>0) {
  ?>         			
                 	<p>&nbsp;</p>	
-                	<p  align="left">
-                	A CONTINUACION LE RELACIONAMOS FACTURAS DE MERCANCIA COBRADAS POR PESO
+                	<p style="font-size:15px; font-family:Arial, Helvetica, sans-serif; padding-left:15px">
+                	A CONTINUACION LE RELACIONAMOS FACTURAS DE MERCANCIA ENTREGADA <br />CUYO FLETE NO HA SIDO PAGADO
                 	</p>
 					<table style="padding-left:10px; font-size:11px; font-family:Arial, Helvetica, sans-serif; color:#999" width="520px">
                 		<tr>

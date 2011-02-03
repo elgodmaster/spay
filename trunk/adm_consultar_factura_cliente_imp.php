@@ -87,7 +87,7 @@
     font-size:18px; font-family:Arial, Helvetica, sans-serif;">
 		<?php
         	if($factura->bskg!=0) { 
-            	echo number_format($factura->bskg,2,",",".")." Bs/Kg"; 
+            	echo "  ".number_format($factura->bskg,2,",",".")." Bs/Kg"; 
         	}
         ?>
    </span>  
@@ -95,7 +95,7 @@
     font-size:18px; font-family:Arial, Helvetica, sans-serif;">
 		<?php
         	if($total_flete_peso!=0) { 
-            	echo number_format($total_flete_peso,2,",","."); 
+            	echo "  ".number_format($total_flete_peso,2,",","."); 
             }
       	?>
    </span>   
@@ -106,11 +106,26 @@
    </span> 	 
    <span align="centered" style="padding:15px 0px 0px 295px; 
     font-size:18px; font-family:Arial, Helvetica, sans-serif;">
-		<?php echo number_format($total_flete,2,",","."); ?>
+		<?php 
+			if($total_flete_peso!=0) { 
+				echo "  ".number_format($total_flete,2,",","."); 
+			}
+			else {
+				echo number_format($total_flete,2,",",".");
+			}
+		?>
    </span>  
    <span width="150px" align="right" style="padding:15px 0px 0px 150px; font-weight:bold;
     font-size:18px; font-family:Arial, Helvetica, sans-serif;">
-		<?php echo number_format($total_iva,2,",","."); ?>
+		<?php  
+			if($total_flete_peso!=0) { 
+				echo "  ".number_format($total_iva,2,",","."); 
+			}
+			else {
+				echo number_format($total_iva,2,",","."); 
+
+			}
+		?>
    </span>       
    <div>&nbsp;</div>    
    <span align="centered" style="padding:7px 0px 0px 150px;  
@@ -125,7 +140,13 @@
     font-size:18px; font-family:Arial, Helvetica, sans-serif;">
 		<?php 
 			if($factura->seguro!="") {    
-            	echo number_format($factura->total_mercancia,2,",",".");  
+            	if($total_flete_peso!=0) { 
+            		echo "  ".number_format($factura->total_mercancia,2,",",".");  
+            	}
+            	else {
+            		echo number_format($factura->total_mercancia,2,",",".");  
+            		
+            	}
       		}		
 		?>
    </span>  
@@ -133,7 +154,13 @@
     font-size:18px; font-family:Arial, Helvetica, sans-serif;">
 		<?php 
 			if($factura->seguro!="") {    
-            	echo number_format($total_seguro,2,",",".");  
+            	if($total_flete_peso!=0) { 
+            		echo "  ".number_format($total_seguro,2,",",".");  
+            	}
+            	else {
+            		echo number_format($total_seguro,2,",",".");  
+            		
+            	}
       		}		
 		?>
    </span>      
@@ -143,8 +170,14 @@
      	$valor = $total_flete;
         $valor += $total_seguro;
      	$valor += $total_iva;
-     	echo number_format($valor,2,",",".");   	 
+        if($total_flete_peso!=0) { 
+     		echo "  ".number_format($valor,2,",",".");  
+        }
+        else {
+     		echo number_format($valor,2,",",".");  
+        	
+        } 	 
   	 ?>
-   </div>   
+   </div>  
 
 <?php include("inc_desconectarse.php"); ?>

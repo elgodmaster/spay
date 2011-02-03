@@ -245,11 +245,9 @@
                      			echo number_format($valor,2,",","."); 
                      		?>" disabled /> 					
                      &nbsp;
-                    </p>   
-                    <p>  
+                    <br />  
                     <?php include("inc_mensajes.php"); ?> 
                     </p>
-                    <br />  
                     <hr />
                                                    
                     <p>
@@ -260,7 +258,8 @@
                     <input name="flete_mercancia" type="hidden" value="<?php echo $factura->total_flete_mercancia; ?>" />     
                     <input name="total_viaje" type="hidden" value="<?php echo $factura->total_viaje; ?>" />    
                     <input name="flete_peso" type="hidden" value="<?php echo $factura->total_flete_peso; ?>" />        
-                    <input name="iva" type="hidden" value="<?php echo $factura->total_flete*($factura->iva/100); ?>" />             
+                    <input name="iva" type="hidden" value="<?php echo $factura->total_flete*($factura->iva/100); ?>" />   
+                    <input name="tipo_cobro" type="hidden" value="<?php echo $factura->tipo_cobro; ?>" />             
                     <input class="button" value="GENERAR FACTURA" type="submit" />
                     <input class="button" value="CANCELAR" type="reset" />	
 					</p>			
