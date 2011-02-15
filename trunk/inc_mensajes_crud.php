@@ -92,6 +92,9 @@ if($action_result=="exitoModificarEnvio") {
 if($action_result=="exitoEliminarEnvio") {
 	echo "<img align='texttop' src='images/icons/accept.png' border='0'  /> Env&iacute;o eliminado exitosamente.";
 }
+if($action_result=="exitoLiberarEnvio") {
+	echo "<img align='texttop' src='images/icons/accept.png' border='0'  /> Env&iacute;o liberado exitosamente.";
+}
 
 // Datos Sistema
 if($action_result=="exitoModificarDatosSistema") {

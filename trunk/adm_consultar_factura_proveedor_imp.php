@@ -59,6 +59,9 @@
 		<?php
          if($factura->flete!=0) {  
           echo number_format($factura->flete,2,",",".")." %"; 
+         }                   			
+         if($total_viaje!="") { 
+           echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"; 
          }
         ?>
    </span>  
@@ -149,7 +152,7 @@
       		}		
 		?>
    </span>  
-   <span width="150px" align="right" style="padding:15px 0px 0px 142px; font-weight:bold;
+   <span width="150px" align="right" style="padding:15px 0px 0px 150px; font-weight:bold;
     font-size:18px; font-family:Arial, Helvetica, sans-serif;">
 		<?php 
 			if($factura->seguro!="") {    

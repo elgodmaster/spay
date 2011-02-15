@@ -82,7 +82,7 @@
                 			<td width="120"><strong>DESTINO</strong></td>
                     		<td width="70" align="right"><strong>MERCANCIA</strong></td>
                     		<td width="50" align="center"><strong>%</strong></td>
-                            <td width="40" align="right" style="padding-right:10px"><strong>FLETE</strong></td>
+                            <td width="60" align="right" style="padding-right:10px"><strong>FLETE</strong></td>
                 			<?php if($guia->ind_guia==2) { ?>
                             <td width="60" align="left"><strong>ACCIONES</strong></td>
                 			<?php } ?>
@@ -101,7 +101,7 @@
 						             AND e.id_cliente = c.id 
 						             AND e.id_destino = d.id 
 						             AND e.id_guia=".$guia->id."  
-						        ORDER BY e.fecha_creacion DESC, e.remesa, e.factura";	
+						        ORDER BY e.fecha_creacion DESC, e.remesa, e.factura";
 
 						$result = obtenerResultset($link,$query);
 					

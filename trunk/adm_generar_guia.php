@@ -74,17 +74,17 @@
 					<form name="frmG" action="adm_generar_guia.php" method="post" enctype="multipart/form-data" 
                 	 onSubmit="return validate_generar_guia_form(this);"  
                      style="background-color:#FFF; border:none;	margin:0px; padding: 0px;">       
-					<table style="padding-left:10px; font-size:11px" width="850px">
+					<table style="padding-left:10px; font-size:11px" width="950px">
             			<tr>
                     		<td colspan="11"><hr></td>
                 		</tr>            	
                 		<tr>
                 			<td width="40"><strong></strong></td>
-                			<td width="250"><strong>PROVEEDOR</strong></td>
+                			<td width="150"><strong>PROVEEDOR</strong></td>
                 			<td width="40" align="center"><strong>BULTOS</strong></td>
                 			<td width="60" align="center"><strong>REMESA</strong></td>
-                			<td width="70" align="center"><strong>FACTURA</strong></td>
-                			<td width="350"><strong>CLIENTE</strong></td>
+                			<td width="100" align="center"><strong>FACTURA</strong></td>
+                			<td width="250"><strong>CLIENTE</strong></td>
                 			<td width="110"><strong>DESTINO</strong></td>
                     		<td width="70" align="right"><strong>MERCANCIA</strong></td>
                     		<td width="50" align="center"><strong>%</strong></td>

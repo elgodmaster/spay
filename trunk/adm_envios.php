@@ -14,6 +14,8 @@
 		
 		if ($_POST["action"]=="Modificar") {
 			$envio->id = $_POST["id"];
+			$envio->tipo_envio = $_POST["cmbGenerar"];
+			$envio->tipo_cobro = $_POST["cmbCobrar"];
 			$envio->bultos = $_POST["txtBultos"];
 			$envio->remesa = $_POST["txtRemesa"];
 			if($_POST["txtRemesa"]=="") {
@@ -34,6 +36,11 @@
 		if($_GET["action"]=="Eliminar") {
 			$id = $_GET["id"];
 			$action_result = eliminarEnvio($link,$id);
+		}	
+		// Liberar Envio
+		if($_GET["action"]=="Liberar") {
+			$id = $_GET["id"];
+			$action_result = liberarEnvio($link,$id);
 		}	
 		
 	}
@@ -180,7 +187,7 @@
 							$query .= " AND e.fecha_creacion='".$fechaI."' "; 
 						}
 						
-						$query .= " ORDER BY e.fecha_creacion DESC, e.ind_envio, e.remesa, e.factura, e.id DESC ";	
+						$query .= " ORDER BY e.fecha_creacion DESC, e.ind_envio, e.id DESC, e.remesa, e.factura ";	
 						
 						$result = obtenerResultset($link,$query);
 
@@ -234,6 +241,12 @@
                            		<?php if($row->tipo_envio=="N") { ?>
                                 <a href="adm_nota_de_entrega.php?id=<?php echo $row->id; ?>" title="Nota de Entrega">
                                 	<img src="images/icons/page.png" align="texttop" border="0" />
+                           		</a>
+                           		<?php } ?>
+                           		<?php if($row->ind_envio==2) { ?>
+                                <a href="adm_envios.php?action=Liberar&id=<?php echo $row->id; ?>" title="Liberar Env&iacute;o">
+                                	<img src="images/icons/lorry_delete.png" align="texttop" border="0"
+                                     onclick="javascript:return confirm('Esta seguro que desea realizar esta acci&oacute;n?');" />
                            		</a>
                            		<?php } ?>
                             </td>
@@ -296,7 +309,7 @@
                     <hr />												
                     <p>
                     	<strong style="padding-right:5px">GENERAR</strong>
-                    	<select name="cmbGenerar" onChange="NotaDeEntrega(frmSP)"  disabled>
+                    	<select name="cmbGenerar" onChange="NotaDeEntrega(frmSP)">
                     		<option value="">SELECCIONE...</option>
                     		<option value="N"
                     		 <?php if($envio->tipo_envio=="N") { ?> selected <?php } ?>>
@@ -308,7 +321,7 @@
 	                    </select>  
 	                    &nbsp;
 	                    <strong style="padding-right:5px">COBRAR POR:</strong>
-                    	<select name="cmbCobrar" onChange="PesoValor(frmSP)" disabled>
+                    	<select name="cmbCobrar" onChange="PesoValor(frmSP)">
                     		<option value="" selected></option>
                     		<option value="V" <?php if($envio->tipo_cobro=="V") { ?> selected <?php } ?>>
                     		 VALOR</option>

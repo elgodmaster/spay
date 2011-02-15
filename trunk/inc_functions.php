@@ -583,14 +583,16 @@
 			$query = "SELECT * 
 			            FROM ts_envio 
 			           WHERE remesa='".$envio->remesa."' 
-			             AND NOT(id_cliente=".$envio->id_cliente.")"; 
+			             AND NOT(id_cliente=".$envio->id_cliente.") 
+			             AND ind_activo < 2";  
 			$result = mysql_query($query, $link);
 			if (mysql_num_rows($result) > 0) { return true; }
 			
 			$query = "SELECT *  
 			            FROM ts_factura 
 			           WHERE numero_factura='".$envio->remesa."'  
-			             AND tipo_factura='C'";
+			             AND tipo_factura='C' 
+			             AND ind_factura < 3"; 
 			$result = mysql_query($query, $link); 
 			if (mysql_num_rows($result) > 0) { return true; } 
 			
@@ -599,7 +601,9 @@
 		$query = "SELECT * 
 		            FROM ts_envio 
 		            WHERE id_proveedor=".$envio->id_proveedor." 
-		              AND factura='".$envio->factura."'";
+		              AND factura='".$envio->factura."' 
+		              AND ind_envio < 3 
+		              AND ind_activo < 2"; 
 		$result = mysql_query($query, $link); 
 		if (mysql_num_rows($result) > 0) { return true; }
 		
@@ -663,6 +667,7 @@
 				                           bskg, 
 				                           viaje,
 				                           ind_envio,
+				                           motivo,
 				                           ind_activo,
 				                           fecha_creacion,
 				                           fecha_modificacion,
@@ -681,6 +686,7 @@
 				                           ".NVL($envio->bskg).",
 				                           ".NVL($envio->viaje).",
 				                           1,
+				                           '".$envio->observaciones."',
 				                           1,
 				                           CURDATE(),
 				                           CURDATE(),
@@ -699,8 +705,14 @@
 	}
 	
 	function modificarEnvio($link, $envio) {
-				
+		
+		$envio_old = obtenerEnvio($link, $envio->id); 
+		if(($envio->tipo_envio!=$envio_old->tipo_envio) && $envio->tipo_envio=="N") {
+			$envio->remesa = codigoNotaDeEntrega($link);
+		}
 		$query = "UPDATE ts_envio SET bultos=".$envio->bultos.",
+				                      tipo_envio='".$envio->tipo_envio."',
+				                      tipo_cobro='".$envio->tipo_cobro."',
 			                      	  remesa='".$envio->remesa."',
 			                      	  factura='".$envio->factura."',
 			                      	  mercancia=".NVL($envio->mercancia).",
@@ -712,7 +724,7 @@
 			                      	  id_usuario=".$_SESSION["id_usuario"]." 
 			                	WHERE id=".$envio->id;
 
-		mysql_query($query, $link);
+		mysql_query($query, $link); 
 		$envio=NULL;
 		return "exitoModificarEnvio";	
 	}	
@@ -773,7 +785,7 @@
 		$row = mysql_fetch_object($result);
 		
 		if($row->id_guia!="" || $row->ind_envio > 1) {
-			$query = "UPDATE ts_envio SET ind_activo = 2 WHERE id=".$id	;
+			$query = "UPDATE ts_envio SET ind_activo = 2 WHERE id=".$id;
 			$result = mysql_query($query, $link);
 		}
 		else {				
@@ -783,6 +795,16 @@
 		}
 		return "exitoEliminarEnvio";;
 	}	
+	
+	function liberarEnvio($link, $id) {
+	
+		$query = "UPDATE ts_envio 
+		             SET id_guia=NULL,
+		                 ind_envio=1  
+		           WHERE id=".$id;
+		mysql_query($query, $link);
+		return "exitoLiberarEnvio";;
+	}
 			
 	
 	// *********************************************************************************
@@ -1529,6 +1551,8 @@
 	                               $cobrarSeguro, $seguro, $envios) {
 	                               	
 		$envios2 = $envios;
+		$envios1 = $envios;
+		
 		if(!existeFactura($link, $numero_factura, $envios2)) {
 			$cliente = obtenerCliente($link, $id_cliente); 
 			
@@ -1542,7 +1566,7 @@
 			$factura->flete = str_replace(",", ".", substr($flete, 0, strpos($flete, ",")+3));
 			$factura->seguro = str_replace(",", ".", substr($seguro, 0, strpos($seguro, ",")+3));
 					
-			$envios1 = $envios;
+			
 			
 			foreach($envios as $id_envio) {
 				
@@ -1635,7 +1659,10 @@
 
 	function generarFacturaProveedor($link, $id_proveedor, $flete, $numero_factura, $cobrarSeguro, $seguro, $envios) {
 
-		if(!existeFactura($link, $numero_factura)) {		
+			$envios1 = $envios;
+			$envios2 = $envios;
+			 
+			if(!existeFactura($link, $numero_factura, $envios2)) {		
 			$factura->proveedor = "";
 			$factura->factura = "";
 			$factura->total_bultos;
@@ -1646,7 +1673,6 @@
 			$factura->flete = str_replace(",", ".", substr($flete, 0, strpos($flete, ",")+3));
 			$factura->seguro = str_replace(",", ".", substr($seguro, 0, strpos($seguro, ",")+3));
 			
-			$envios1 = $envios;
 			foreach($envios as $id_envio) {
 				
 				// Obtengo el envio
@@ -1703,7 +1729,7 @@
 			                          VALUES(".$id_proveedor.", 
 			                                 '".$numero_factura."', 
 			                                 CURDATE(),
-			                                 'P',
+			                                 'P', 
 			                                 '".$factura->factura."',
 			                                 ".$factura->total_bultos.",
 			                                 ".$factura->total_mercancia.",

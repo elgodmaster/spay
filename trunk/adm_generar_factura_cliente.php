@@ -241,15 +241,15 @@
                      &nbsp;
                     <br />													
                     <strong style="padding-right:5px">I.V.A.</strong>
-					<input name="txtProveedor" type="text" size="37" style="text-align:right;" 
+					<input name="txtIVA" type="text" size="37" style="text-align:right;" 
                      value="<?php echo number_format(obtenerIVA($link),2,",",".")." %"; ?>" disabled /> 
                      &nbsp;													
                     <strong style="padding-right:7px">POR Bs.</strong>
-					<input name="txtProveedor" type="text" size="13" style="text-align:right" 
+					<input name="txtFleteIVA" type="text" size="13" style="text-align:right" 
                      value="<?php echo number_format($factura->total_flete,2,",","."); ?>" disabled /> 
                      &nbsp;													
                     <strong style="padding-right:5px"></strong>
-					<input name="txtTotalFleteIva" type="text" size="16" style="text-align:right; border:2px solid #666; font-weight:bold;" 
+					<input name="txtTotalFleteIVA" type="text" size="16" style="text-align:right; border:2px solid #666; font-weight:bold;" 
                      value="<?php 
                      			echo number_format($factura->total_flete*($factura->iva/100),2,",","."); 
                      		?>" disabled /> 
