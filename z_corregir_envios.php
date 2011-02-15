@@ -6,8 +6,19 @@
 	// Modificar Usuario
 	if ($_POST["action"]=="Corregir") {
 		
-		$query = "UPDATE ts_envio SET id_factura=21 WHERE id=60";
+		$query = "UPDATE ts_envio SET id_factura=35 WHERE id=48";
 		mysql_query($query, $link);
+		
+		$query = "UPDATE ts_envio SET id_cliente=89 WHERE id=27";
+		mysql_query($query, $link);
+		
+		$query = "UPDATE ts_envio SET tipo_cobro='V' WHERE id=112";
+		mysql_query($query, $link);
+		
+		$query = "UPDATE ts_guia SET total_flete=302.05 WHERE id=10";
+		mysql_query($query, $link);
+		
+		
 		
 		$action_result = "exitoModificarDatos";
 	}
@@ -25,13 +36,13 @@
 			<?php include("inc_sidebar.php"); ?>	
 	  		<div id="main"> 
 				
-				<h1>Corregir Envio 21205</h1>
+				<h1>Corregir Envios</h1>
                 <p>
 				<?php include("inc_mensajes_crud.php"); ?>
                 </p>              
 
-                <h3>Para corregir el envio 21205 haga click en ACEPTAR.</h3>				
-				<form action="z_corregir_envio_21205.php" method="post" enctype="multipart/form-data" 
+                <h3>Para corregir los envios defectuosos haga click en ACEPTAR.</h3>				
+				<form action="z_corregir_envios.php" method="post" enctype="multipart/form-data" 
                   style="background-color:#FFF; border-color:#FFF">	                
                    	<input name="action" type="hidden" value="Corregir" />  
                     <input name="id" type="hidden" value="<?php echo $_SESSION["id_usuario"]; ?>" />                 

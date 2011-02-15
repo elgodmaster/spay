@@ -45,8 +45,9 @@
                     		</td>
                 		</tr> 
                 	</table>
-                	<p>
-                     <strong style="font-size:22px; font-family:Arial, Helvetica, sans-serif; padding-left:15px">
+                    <br />
+                	<p style="width:850px; text-align:center">
+                     <strong style="font-size:22px; font-family:Arial, Helvetica, sans-serif; padding-left:15px; color:#999">
                      SE&Ntilde;ORES: 
                      <?php echo obtenerProveedorStr($link, $factura->id_proveedor); ?>
                      </strong>
@@ -71,10 +72,17 @@
 						if(mysql_num_rows($result)>0) {
  ?>    
                 	<p>&nbsp;</p>	
-                	<p style="font-size:15px; font-family:Arial, Helvetica, sans-serif; padding-left:15px">
+                	<p style="font-size:15px; font-family:Arial, Helvetica, sans-serif; padding-left:15px; color:#999; 
+                     width:850px; text-align:center">
                 	A CONTINUACION LE RELACIONAMOS FACTURAS DE MERCANCIA ENTREGADA <br />CUYO FLETE NO HA SIDO PAGADO
+                	</p>	
+                	<p style="font-size:13px; font-family:Arial, Helvetica, sans-serif; padding-left:15px; color:#999; 
+                     width:850px; text-align:center">
+                	ENVIOS POR % FLETE
                 	</p>
-					<table style="padding-left:10px; font-size:11px; font-family:Arial, Helvetica, sans-serif; color:#999" width="520px">
+                    <div style="width:850px" align="center">
+					<table style="padding-left:10px; font-size:11px; font-family:Arial, Helvetica, sans-serif; color:#999; 
+                     width:520px;">
                 		<tr>
                     		<td colspan="11"><hr></td>
                 		</tr>            	
@@ -137,6 +145,8 @@
                         	<td colspan="6"></td>
                         </tr>                                                                                               
           			</table>
+                    
+                    </div>
           			
 <?php 
 				} 
@@ -156,16 +166,23 @@
 						             AND e.id_cliente = c.id 
 						             AND e.id_destino = d.id 
 						             AND e.id_factura=".$factura->id."   
-						             AND e.tipo_cobro='M'  
+						             AND e.tipo_cobro='P'  
 						        ORDER BY e.fecha_creacion";	
 						$result = obtenerResultset($link,$query);
 						
 						if(mysql_num_rows($result)>0) {
  ?>              			
                 	<p>&nbsp;</p>	
-                	<p style="font-size:15px; font-family:Arial, Helvetica, sans-serif; padding-left:15px">
+                	<p style="font-size:15px; font-family:Arial, Helvetica, sans-serif; padding-left:15px; color:#999; 
+                     width:850px; text-align:center">
                 	A CONTINUACION LE RELACIONAMOS FACTURAS DE MERCANCIA ENTREGADA <br />CUYO FLETE NO HA SIDO PAGADO
                 	</p>
+                	<p style="font-size:13px; font-family:Arial, Helvetica, sans-serif; padding-left:15px; color:#999; 
+                     width:850px; text-align:center">
+                	ENVIOS POR PESO
+                	</p>
+                    
+                    <div style="width:850px" align="center">
 					<table style="padding-left:10px; font-size:11px; font-family:Arial, Helvetica, sans-serif; color:#999" width="520px">
                 		<tr>
                     		<td colspan="11"><hr></td>
@@ -229,6 +246,7 @@
                         	<td colspan="6"></td>
                         </tr>                                                                                               
           			</table>    
+                    </div>
 <?php 
 		}				 
 				$total_general += $total_valor;
@@ -246,16 +264,23 @@
 						             AND e.id_cliente = c.id 
 						             AND e.id_destino = d.id 
 						             AND e.id_factura=".$factura->id."   
-						             AND e.tipo_cobro='P'  
+						             AND e.tipo_cobro='M'  
 						        ORDER BY e.fecha_creacion";	
 						$result = obtenerResultset($link,$query);
 						
 						if(mysql_num_rows($result)>0) {
  ?>         			
                 	<p>&nbsp;</p>	
-                	<p style="font-size:15px; font-family:Arial, Helvetica, sans-serif; padding-left:15px">
+                	<p style="font-size:15px; font-family:Arial, Helvetica, sans-serif; padding-left:15px; color:#999; 
+                     width:850px; text-align:center">
                 	A CONTINUACION LE RELACIONAMOS FACTURAS DE MERCANCIA ENTREGADA <br />CUYO FLETE NO HA SIDO PAGADO
                 	</p>
+                	<p style="font-size:13px; font-family:Arial, Helvetica, sans-serif; padding-left:15px; color:#999; 
+                     width:850px; text-align:center">
+                	ENVIOS POR VIAJE
+                	</p>
+                    
+                    <div style="width:850px" align="center">
 					<table style="padding-left:10px; font-size:11px; font-family:Arial, Helvetica, sans-serif; color:#999" width="520px">
                 		<tr>
                     		<td colspan="11"><hr></td>
@@ -320,11 +345,14 @@
                         	<td colspan="6"></td>
                         </tr>                                                                                               
           			</table>    
+                    </div>
 <?php 
 						}
 ?>          			 
-
-					<table style="padding-left:10px; font-size:11px; font-family:Arial, Helvetica, sans-serif; color:#999" width="520px">
+					
+                    <div style="width:850px" align="center">
+					<table style="padding-left:10px; font-size:11px; font-family:Arial, Helvetica, sans-serif; color:#999" 
+                     width="520px">
             			<tr>
                     		<td class="text" colspan="11"><hr></td>
                 		</tr>                        
@@ -341,8 +369,13 @@
             			<tr>
                     		<td class="text" colspan="11"><hr></td>
                 		</tr>     
-                		</table> 			      			
-   
+                		</table> 
+                     </div>   
+                	<p>&nbsp;</p>	
+                	<p style="font-size:15px; font-family:Arial, Helvetica, sans-serif; padding-left:15px; color:#999; 
+                     width:850px; text-align:center">
+                	<?php echo $comentarios; ?>
+                	</p>                     
 </body>
 </html>
 <?php include("inc_desconectarse.php"); ?>

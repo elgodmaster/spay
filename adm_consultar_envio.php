@@ -193,12 +193,12 @@
                     &nbsp;
                     <strong style="padding-right:5px;">FECHA</strong><input name="txtRIF" type="text" size="8" style="text-transform:uppercase" 
                      value="<?php echo mostrarFecha($envio->fecha_modificacion);  ?>" disabled />
-                    <?php if($envio->ind_envio > 1 && $envio->ind_envio < 5 ) { ?>
+                    <?php if($envio->ind_envio > 1) { ?>
                     &nbsp;
                     <strong style="padding-right:5px;">CHOFER</strong><input name="txtRIF" type="text" size="47" style="text-transform:uppercase" 
                      value="<?php echo obtenerChoferStr($link, $guia->id_chofer);  ?>" disabled />
                     <?php } ?>
-                    <?php if($envio->ind_envio > 2 && $envio->motivo!="") { ?>
+                    <?php if($envio->motivo!="") { ?>
                     <br /><br />
                     <strong style="padding-right:5px;">OBSERVACIONES</strong>
                     <br />

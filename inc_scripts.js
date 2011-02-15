@@ -482,6 +482,12 @@ function validate_envio_form(form)
 		form.cmbGenerar.focus();
 		return false;
 	}	
+	if (form.cmbCobrar.selectedIndex=="") {	
+		document.getElementById("mensError").innerHTML = 
+		"<img align='texttop' src='images/icons/cancel.png' border='0'  /> POR FAVOR INDIQUE SI SE DEBE COBRAR POR VALOR, PESO O VIAJE.";
+		form.cmbCobrar.focus();
+		return false;
+	}	
 	if (form.cmbProveedor.selectedIndex=="") {	
 		document.getElementById("mensError").innerHTML = 
 		"<img align='texttop' src='images/icons/cancel.png' border='0'  /> POR FAVOR SELECCIONE EL PROVEEDOR.";
@@ -1259,7 +1265,7 @@ function seguroMercancia(form) {
 		totalFletePeso = totalFletePeso.replace(',','.');
 		totalFletePesoF = eval(totalFletePeso);
 	}
-	var totalFleteIva = form.txtTotalFleteIva.value;
+	var totalFleteIva = form.txtTotalFleteIVA.value;
 	totalFleteIva = totalFleteIva.replace('.','');
 	totalFleteIva = totalFleteIva.replace(',','.');
 	totalFleteIvaF = eval(totalFleteIva);
@@ -1313,9 +1319,12 @@ function fleteMercancia(form) {
 		totalFletePeso = totalFletePeso.replace(',','.');
 		totalFletePesoF = eval(totalFletePeso);
 	}
-	var totalFleteIva = form.txtTotalFleteIva.value;
-	totalFleteIva = totalFleteIva.replace('.','');
-	totalFleteIva = totalFleteIva.replace(',','.');
+	
+	var iva = form.txtIVA.value;
+	iva = iva.substring(0,iva.indexOf(',')+3);
+	iva = iva.replace(',','.');
+	iva = eval(iva);	
+	var totalFleteIva = totalFleteMercancia*(iva/100);
 	totalFleteIvaF = eval(totalFleteIva);
 	
 	if(totalFleteMercancia!="") {
@@ -1330,6 +1339,8 @@ function fleteMercancia(form) {
 	}
 	
 	form.txtTotalFleteMercancia.value = formatNumber(totalFleteMercancia,2,'.',',','','','-','');
+	form.txtFleteIVA.value = formatNumber(totalFleteMercancia,2,'.',',','','','-','');
+	form.txtTotalFleteIVA.value = formatNumber(totalFleteIva,2,'.',',','','','-','');
 	form.txtTotalPagar.value = formatNumber(totalPagar,2,'.',',','','','-','');
 	form.txtFlete.value = formatNumber(fleteF,2,'.',',','','','-','')+" %";
 }

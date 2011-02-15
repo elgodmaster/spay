@@ -11,7 +11,7 @@
 	
 		// Buscar Datos Cliente
 		if ($_POST["action"]=="Buscar") {
-			$envio = obtenerClienteRIF($link,$_POST["txtBuscarCliente"]);
+			$envio = obtenerClienteRIF($link,strtoupper($_POST["txtBuscarCliente"]));
 		}
 		
 		// Cargar Envio
@@ -27,6 +27,7 @@
 			$envio->id_proveedor = $_POST["cmbProveedor"];
 			$envio->id_destino = $_POST["cmbDestino"];
 			$envio->bultos = $_POST["txtBultos"];
+			$envio->observaciones = strtoupper($_POST["txtObservaciones"]);
 			if($_POST["remesa"]!="") {
 				$envio->remesa = $_POST["remesa"];
 			}
@@ -211,6 +212,9 @@
 						<strong style="padding-right:5px">Bs/Kg</strong>
 						<input name="txtBsKg" type="text" size="1"
 						 style="text-align:right;" <?php if($envio->tipo_cobro!="" && $envio->tipo_cobro!="P") { ?> disabled <?php } ?> />
+	                    <br /><br />
+                    	<strong style="padding-right:5px">OBSERVACIONES</strong>
+						<input name="txtObservaciones" type="text" size="82" style="text-transform:uppercase;" /> 
                     </p>
                     <br />
                     <hr />   
