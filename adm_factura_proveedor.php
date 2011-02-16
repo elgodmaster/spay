@@ -77,7 +77,7 @@
                 			<td width="40" align="center"><strong>BULTOS</strong></td>
                 			<td width="60" align="center"><strong>REMESA</strong></td>
                 			<td width="70" align="center"><strong>FACTURA</strong></td>
-                			<td width="350"><strong>CLIENTE</strong></td>
+                			<td width="250"><strong>CLIENTE</strong></td>
                 			<td width="110"><strong>DESTINO</strong></td>
                     		<td width="70" align="right"><strong>MERCANCIA</strong></td>
                     		<td width="50" align="center"><strong>%</strong></td>
@@ -144,7 +144,7 @@
 								<?php echo str_pad($row->factura, 6, "0", STR_PAD_LEFT); ?>
                     		</td>
                 			<td <?php if($inactiva) {?> style="color:#999;" <?php } ?>>
-								<?php echo substr(obtenerClienteStr($link, $row->id_cliente),0,33); ?>
+								<?php echo substr(obtenerClienteStr($link, $row->id_cliente),0,25); ?>
                     		</td> 
                 			<td <?php if($inactiva) {?> style="color:#999;" <?php } ?>>
 								<?php echo substr(obtenerDestinoStr($link, $row->id_destino),0,15); ?>
