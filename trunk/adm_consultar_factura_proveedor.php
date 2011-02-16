@@ -40,7 +40,7 @@
               	</a>
               	</div>
               	<div align="left" style="padding:0px 0px 20px 15px">
-				<a href="adm_relacion_notas_entrega_imp.php?id=<?php echo $id; ?>" target="_blank">
+				<a href="adm_relacion_notas_entrega.php?id=<?php echo $id; ?>">
                     <strong>Ver Relaci&oacute;n de Env&iacute;os</strong>
               	</a>
 				</div>

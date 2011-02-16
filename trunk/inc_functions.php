@@ -710,6 +710,7 @@
 		if(($envio->tipo_envio!=$envio_old->tipo_envio) && $envio->tipo_envio=="N") {
 			$envio->remesa = codigoNotaDeEntrega($link);
 		}
+		
 		$query = "UPDATE ts_envio SET bultos=".$envio->bultos.",
 				                      tipo_envio='".$envio->tipo_envio."',
 				                      tipo_cobro='".$envio->tipo_cobro."',
@@ -1788,6 +1789,21 @@
 		}
 		
 		return "exitoAnularFactura";
+	}
+	
+	function agregarComentarioRelacion($link, $id, $comentarios) {
+		
+		$factura = obtenerFactura($link, $id);
+		if($factura->comentarios!="") {
+			$comentarios = $factura->comentarios."<br/>".$comentarios;
+		}
+		
+		$query = "UPDATE ts_factura 
+		             SET comentarios='".$comentarios."'
+		           WHERE id=".$id;
+		mysql_query($query, $link); 
+
+		return "exitoAgregarComentario";
 	}
 
 

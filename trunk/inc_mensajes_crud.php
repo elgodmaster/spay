@@ -133,6 +133,12 @@ if($action_result=="exitoEliminarFacturas") {
 if($action_result=="exitoModificarDatos") {
 	echo "<img align='texttop' src='images/icons/accept.png' border='0'  /> Datos modificados exitosamente.";
 }
+if($action_result=="exitoActualizarSistema") {
+	echo "<img align='texttop' src='images/icons/accept.png' border='0'  /> Sistema actualizado exitosamente.";
+}
+if($action_result=="exitoAgregarComentario") {
+	echo "<img align='texttop' src='images/icons/accept.png' border='0'  /> Comentario agregado exitosamente.";
+}
 
 	
 ?>

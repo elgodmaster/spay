@@ -37,11 +37,6 @@
 			$id = $_GET["id"];
 			$action_result = eliminarEnvio($link,$id);
 		}	
-		// Liberar Envio
-		if($_GET["action"]=="Liberar") {
-			$id = $_GET["id"];
-			$action_result = liberarEnvio($link,$id);
-		}	
 		
 	}
 ?>	
@@ -241,12 +236,6 @@
                            		<?php if($row->tipo_envio=="N") { ?>
                                 <a href="adm_nota_de_entrega.php?id=<?php echo $row->id; ?>" title="Nota de Entrega">
                                 	<img src="images/icons/page.png" align="texttop" border="0" />
-                           		</a>
-                           		<?php } ?>
-                           		<?php if($row->ind_envio==2) { ?>
-                                <a href="adm_envios.php?action=Liberar&id=<?php echo $row->id; ?>" title="Liberar Env&iacute;o">
-                                	<img src="images/icons/lorry_delete.png" align="texttop" border="0"
-                                     onclick="javascript:return confirm('Esta seguro que desea realizar esta acci&oacute;n?');" />
                            		</a>
                            		<?php } ?>
                             </td>
