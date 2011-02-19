@@ -7,11 +7,6 @@
 	$envio = obtenerEnvio($link,$_GET["id"]);
 	$tipo_cobro = $envio->tipo_cobro;
 	$id_cliente = $envio->id_cliente;
-	$query = "SELECT * 
-	            FROM ts_envio 
-	           WHERE fecha_creacion = '".$envio->fecha_creacion."' 
-	             AND remesa = ".$envio->remesa;
-	$result = mysql_query($query, $link);
 ?>	
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
@@ -26,14 +21,14 @@
 			<?php include("inc_sidebar.php"); ?>	
 	  		<div id="main"> 
 					
-				<h1>Nota de Entrega</h1>
+				<h1>Nota de Devoluci&oacute;n</h1>
 				<div align="right">
-				<a href="adm_envios.php" class="orange">
+				<a href="adm_consultar_guia.php?id=<?php echo $_GET["id_guia"]; ?>" class="orange">
 				<strong><< Regresar</strong>
 				</a>
-				</div>	
+				</div>					
 				<div align="left" style="padding:0px 0px 20px 15px">
-				<a href="adm_nota_de_entrega_imp.php?id=<?php echo $envio->id; ?>" target="_blank">
+				<a href="adm_nota_de_devolucion_imp.php?id=<?php echo $envio->id; ?>" target="_blank">
                 	<img src="images/icons/printer.png" align="texttop" border="0" />
                     <strong>Versi&oacute;n Imprimible</strong>
               	</a>
@@ -56,11 +51,11 @@
                                         E-mail: transportespay@gmail.com
 									</td>
                                     <td align="right" valign="top" width="300px" style="font-size:16px">
-                                    NOTA DE ENTREGA N&deg; <strong style="font-size:22px">
-                                    <?php echo str_pad($envio->remesa, 4, "0", STR_PAD_LEFT); ?>
+                                    NOTA DE DEVOLUCI&Oacute;N N&deg; <strong style="font-size:22px">
+                                    <?php echo str_pad($envio->devolucion, 4, "0", STR_PAD_LEFT); ?>
                                     </strong>
                                     <br /><br />
-                                    <strong><?php echo mostrarFecha($envio->fecha_creacion); ?></strong>
+                                    <strong><?php echo mostrarFecha($envio->fecha_modificacion); ?></strong>
                                     </td>
 								</tr>
 							</table>
@@ -101,8 +96,7 @@
                 			$total_mercancia = 0;
                 			$total_peso = 0;
                 			$total_viaje = 0;
-                			 
-                			while($envio = obtenerRegistro($result)) { 
+                			           			 
                 		?>         
           				<tr style="color: #000">
                 			<td <?php if($inactiva) {?> style="color:#999;" <?php } ?>>
@@ -146,7 +140,6 @@
 	                			$total_mercancia += $envio->mercancia;
 	                			$total_peso += $envio->peso;
 	                			$total_viaje += $envio->viaje;
-                			}
                 		?>
                         <tr>
                         	<td colspan="6">&nbsp;</td>
@@ -199,6 +192,12 @@
                 		</tr> 
                         <tr>
                         	<td colspan="6">&nbsp;</td>
+                        </tr> 
+                        <tr>
+                        	<td colspan="6">
+                        	<strong>MOTIVO:</strong>
+                        	<?php echo $envio->motivo; ?>
+                        	</td>
                         </tr> 
                         <tr>
                         	<td colspan="6">&nbsp;</td>

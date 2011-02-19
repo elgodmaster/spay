@@ -153,9 +153,10 @@
                      			if($factura->total_flete_mercancia!=0) { 
                      				echo number_format($factura->total_flete_mercancia,2,",","."); 
                      			}
+                     			/*
                      			if($factura->total_viaje!=0) { 
                      				echo number_format($factura->total_viaje,2,",","."); 
-                     			}
+                     			}*/
                      		?>" disabled  /> 
                      &nbsp;
                     <br />												

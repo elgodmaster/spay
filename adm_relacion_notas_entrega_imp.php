@@ -65,7 +65,7 @@
 						             AND e.id_destino = d.id 
 						             AND e.id_factura=".$factura->id." 
 						             AND e.tipo_cobro='V'   
-						        ORDER BY e.fecha_creacion";	
+						        ORDER BY e.factura";	
 
 						$result = obtenerResultset($link,$query);
 						

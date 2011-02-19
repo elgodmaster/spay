@@ -8,12 +8,20 @@
 		$datos->iva = $_POST["txtIVA"];
 		$datos->bskg = $_POST["txtBSKG"];
 		$datos->seguro = $_POST["txtSeguro"];
+		$datos->seq_nota_entrega = $_POST["txtSeqNotaEntrega"];
+		$datos->seq_numero_guia = $_POST["txtSeqNumeroGuia"];
+		$datos->seq_relacion = $_POST["txtSeqRelacion"];
+		$datos->seq_devolucion = $_POST["txtSeqDevolucion"];
 		$action_result = modificarDatosSistema($link, $datos);
 	}
 	
 	$iva = obtenerIVA($link);
 	$bskg = obtenerBSKG($link);
 	$seguro = obtenerSeguro($link);
+	$seq_nota_entrega = obtenerSeqNotaEntrega($link);
+	$seq_numero_guia = obtenerSeqNumeroGuia($link);
+	$seq_relacion = obtenerSeqRelacion($link);
+	$seq_devolucion = obtenerSeqDevolucion($link);
 ?>	
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
@@ -40,15 +48,32 @@
 					<input name="txtIVA" type="text" size="1" style="text-transform:uppercase; text-align:right;" 
                      value="<?php echo $iva; ?>" /> 									       
                     <strong style="padding-right:5px">%</strong>    
-                    &nbsp;    													
+                    &nbsp;	    													
                     <strong style="padding-right:5px">Bs/Kg</strong>
 					<input name="txtBSKG" type="text" size="1" style="text-transform:uppercase; text-align:right;" 
                      value="<?php echo $bskg; ?>" />    
-                     &nbsp;     													
+                    &nbsp;     													
                     <strong style="padding-right:5px">Seguro</strong>
 					<input name="txtSeguro" type="text" size="1" style="text-transform:uppercase; text-align:right;" 
                      value="<?php echo $seguro; ?>" /> 									       
-                    <strong style="padding-right:5px">%</strong>                    
+                    <strong style="padding-right:5px">%</strong>    
+                    <br /><br />      													
+                    <strong style="padding-right:5px">SECUENCIA NOTA DE ENTREGA</strong>
+					<input name="txtSeqNotaEntrega" type="text" size="1" style="text-transform:uppercase; text-align:right;" 
+                     value="<?php echo $seq_nota_entrega; ?>" />    
+                    <br /><br />       													
+                    <strong style="padding-right:5px">SECUENCIA N&deg; GUIA</strong>
+					<input name="txtSeqNumeroGuia" type="text" size="1" style="text-transform:uppercase; text-align:right;" 
+                     value="<?php echo $seq_numero_guia; ?>" />   
+                    <br /><br />      													
+                    <strong style="padding-right:5px">SECUENCIA N&deg; RELACION</strong>
+					<input name="txtSeqRelacion" type="text" size="1" style="text-transform:uppercase; text-align:right;" 
+                     value="<?php echo $seq_relacion; ?>" />    
+                    <br /><br /> 	    													
+                    <strong style="padding-right:5px">SECUENCIA N&deg; DEVOLUCION</strong>
+					<input name="txtSeqDevolucion" type="text" size="1" style="text-transform:uppercase; text-align:right;" 
+                     value="<?php echo $seq_devolucion; ?>" />    
+                    <br /><br />               
                     </p>                                  
                     <br />                 
                     <hr />

@@ -137,7 +137,7 @@
 								<?php echo substr(str_pad($row->factura, 6, "0", STR_PAD_LEFT),0,6); ?>
                     		</td>
                 			<td <?php if($inactiva) {?> style="color:#999;" <?php } ?>>
-								<?php echo  substr(obtenerClienteStr($link, $row->id_cliente),0,33); ?>
+								<?php echo  substr(obtenerClienteStr($link, $row->id_cliente),0,28); ?>
                     		</td> 
                 			<td <?php if($inactiva) {?> style="color:#999;" <?php } ?>>
 								<?php echo substr(obtenerDestinoStr($link, $row->id_destino),0,15); ?>
@@ -168,6 +168,12 @@
                                    title="Marcar como Devuelto">
                                 	<img src="images/icons/cancel.png" align="texttop" border="0"
                                      onclick="javascript:return confirm('Esta seguro que desea marcar como Devuelto?');" />
+                           		</a>
+                           		<?php } ?>
+                            	<?php if($row->ind_envio==4) { ?>
+                                <a href="adm_nota_de_devolucion.php?id=<?php echo $row->id; ?>&id_guia=<?php echo $guia->id; ?>" 
+                                   title="Nota de Devoluci&oacute;n">
+                                	<img src="images/icons/page_error.png" align="texttop" border="0" />
                            		</a>
                            		<?php } ?>
                            	</td> 
