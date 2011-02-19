@@ -6,7 +6,23 @@
 	// Modificar Usuario
 	if ($_POST["action"]=="Actualizar") {
 		
-		$query = "ALTER TABLE ts_factura ADD comentarios TEXT;";
+		$query = "ALTER TABLE ts_envio ADD devolucion INT(15)";
+		mysql_query($query, $link);
+		
+		$query = "INSERT INTO ts_config(parametro,
+		                                codigo,
+		                                valor,
+		                                ind_activo,
+		                                fecha_creacion,
+		                                fecha_modificacion,
+		                                id_usuario) 
+		                         VALUES('SEQ_DEVOLUCION',
+		                                1,
+		                                7,
+		                                1,
+		                                CURDATE(),
+		                                CURDATE(),
+		                                1)";
 		mysql_query($query, $link);
 		
 		$action_result = "exitoActualizarSistema";

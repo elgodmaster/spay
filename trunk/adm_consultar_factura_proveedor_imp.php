@@ -70,10 +70,12 @@
 		<?php
         	if($total_flete_mercancia!=0) { 
             	echo number_format($total_flete_mercancia,2,",","."); 
-            }                     			
+            }  
+            /*                   			
           	if($total_viaje!="") { 
             	echo number_format($total_viaje,2,",","."); 
           	}
+          	*/
       	?>
    </span>  
    <div>&nbsp;</div>    

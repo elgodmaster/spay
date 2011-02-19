@@ -233,6 +233,15 @@
 		$query = "UPDATE ts_config SET valor=".($row->valor+1)." WHERE parametro='SEQ_RELACION'";
 		mysql_query($query,$link);
 		return $row->valor+1;
+	}	
+	
+	function codigoNotaDeDevolucion($link) {
+		$query = "SELECT * FROM ts_config WHERE parametro='SEQ_DEVOLUCION'";
+		$result = mysql_query($query,$link);
+		$row = mysql_fetch_object($result);
+		$query = "UPDATE ts_config SET valor=".($row->valor+1)." WHERE parametro='SEQ_DEVOLUCION'";
+		mysql_query($query,$link);
+		return $row->valor+1;
 	}
 		
 	function obtenerNumeroFactura($link, $id) { 
@@ -265,6 +274,34 @@
 		return $row->valor;	
 	}
 	
+	function obtenerSeqNotaEntrega($link) {
+		$query = "SELECT * FROM ts_config WHERE parametro='SEQ_NOTA_ENTREGA'";
+		$result = mysql_query($query,$link);
+		$row = mysql_fetch_object($result);
+		return $row->valor;	
+	}
+	
+	function obtenerSeqNumeroGuia($link) {
+		$query = "SELECT * FROM ts_config WHERE parametro='SEQ_NUMERO_GUIA'";
+		$result = mysql_query($query,$link);
+		$row = mysql_fetch_object($result);
+		return $row->valor;	
+	}
+	
+	function obtenerSeqRelacion($link) {
+		$query = "SELECT * FROM ts_config WHERE parametro='SEQ_RELACION'";
+		$result = mysql_query($query,$link);
+		$row = mysql_fetch_object($result);
+		return $row->valor;	
+	}
+	
+	function obtenerSeqDevolucion($link) {
+		$query = "SELECT * FROM ts_config WHERE parametro='SEQ_DEVOLUCION'";
+		$result = mysql_query($query,$link);
+		$row = mysql_fetch_object($result);
+		return $row->valor;	
+	}
+	
 	function modificarDatosSistema($link, $datos) { 
 		
 		// IVA
@@ -277,7 +314,20 @@
 		
 		// Seguro
 		$query = "UPDATE ts_config SET valor=".$datos->seguro." WHERE parametro='SEGURO'";
-		mysql_query($query,$link);				
+		mysql_query($query,$link);	
+		
+		// SeqNotaEntrega
+		$query = "UPDATE ts_config SET valor=".$datos->seq_nota_entrega." WHERE parametro='SEQ_NOTA_ENTREGA'";
+		mysql_query($query,$link);
+		// SeqNumeroGuia
+		$query = "UPDATE ts_config SET valor=".$datos->seq_numero_guia." WHERE parametro='SEQ_NUMERO_GUIA'";
+		mysql_query($query,$link);
+		// SeqRelacion
+		$query = "UPDATE ts_config SET valor=".$datos->seq_relacion." WHERE parametro='SEQ_RELACION'";
+		mysql_query($query,$link);
+		// SeqDevolucion
+		$query = "UPDATE ts_config SET valor=".$datos->seq_devolucion." WHERE parametro='SEQ_DEVOLUCION'";
+		mysql_query($query,$link);			
 
 		return "exitoModificarDatosSistema";
 	}
@@ -772,7 +822,8 @@
 		             SET ind_envio=4,  
 		                 motivo='".$motivo."', 
 			             fecha_modificacion=CURDATE(), 
-			             id_usuario=".$_SESSION["id_usuario"]."   
+			             id_usuario=".$_SESSION["id_usuario"].",
+			             devolucion=".codigoNotaDeDevolucion($link)."    
 			       WHERE id=".$id; 
 		mysql_query($query, $link);
 		return "exitoModificarEnvio";

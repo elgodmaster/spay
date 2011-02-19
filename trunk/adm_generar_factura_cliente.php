@@ -22,6 +22,7 @@
 		$factura->bskg = 0;
 		$factura->total_viaje = 0;
 		$factura->seguro = obtenerSeguro($link);
+		$ult_remesa = "";
 		
 		foreach($envios as $id_envio) {
 			
@@ -36,8 +37,10 @@
 			if($id_cliente=="") {
 				$id_cliente = $row->id_cliente;				
 			}
-			
-			$factura->proveedor .= obtenerProveedorStr($link, $row->id_proveedor).", ";
+			if($row->remesa!=$ult_remesa) {
+				$factura->proveedor .= obtenerProveedorStr($link, $row->id_proveedor).", ";
+			}
+			$ult_remesa = $row->remesa;
 			$factura->factura .= $row->factura.", ";
 			$factura->total_bultos += $row->bultos;
 			$factura->total_mercancia += $row->mercancia;
