@@ -150,8 +150,8 @@
                     <strong style="padding-right:5px"></strong>
 					<input name="txtTotalFleteMercancia" type="text" size="16" style="text-align:right; border:2px solid #666; font-weight:bold;" 
                      value="<?php
-                     			if($factura->total_flete_mercancia!=0) { 
-                     				echo number_format($factura->total_flete_mercancia,2,",","."); 
+                     			if($factura->total_flete_mercancia!=0 || $factura->total_viaje!=0) { 
+                     				echo number_format($factura->total_flete,2,",","."); 
                      			}
                      			/*
                      			if($factura->total_viaje!=0) { 
