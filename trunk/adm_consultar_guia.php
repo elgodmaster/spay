@@ -33,7 +33,7 @@
 <div id="wrap"> 
 	<?php include("inc_menu.php"); ?>
 	<!-- content-wrap starts here -->	
-	<div id="content-wrap">  
+	<div id="content-wrap">   
 			<?php include("inc_sidebar.php"); ?>	
 	  		<div id="main"> 
 					

@@ -799,7 +799,6 @@
 		             SET ind_envio=5,
 		                 motivo='".$motivo."',  
 		                 id_guia=NULL,
-		                 id_factura=NULL,
 			             fecha_modificacion=CURDATE(), 
 			             id_usuario=".$_SESSION["id_usuario"]."   
 			       WHERE id=".$id; 
@@ -845,7 +844,7 @@
 				$query = "DELETE FROM ts_envio WHERE id=".$id;
 				$result = mysql_query($query, $link);
 		}
-		return "exitoEliminarEnvio";;
+		return "exitoEliminarEnvio";
 	}	
 	
 	function liberarEnvio($link, $id) {
@@ -855,7 +854,7 @@
 		                 ind_envio=1  
 		           WHERE id=".$id;
 		mysql_query($query, $link);
-		return "exitoLiberarEnvio";;
+		return "exitoLiberarEnvio";
 	}
 			
 	
