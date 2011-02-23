@@ -129,13 +129,14 @@
                     <strong style="padding-right:5px"></strong>
 					<input name="txtTotalFleteMercancia" type="text" size="16" style="text-align:right; border:2px solid #666; font-weight:bold;" 
                      value="<?php
-                     			if($total_flete_mercancia!=0) { 
-                     				echo number_format($total_flete_mercancia,2,",","."); 
+                     			if($factura->total_flete_mercancia!=0 || $factura->total_viaje!=0) { 
+                     				echo number_format($factura->total_flete,2,",","."); 
                      			}
-                     			/*                     			
-                     			if($total_viaje!="" && ) { 
-                     				echo number_format($total_viaje,2,",","."); 
-                     			}*/
+                     			/*
+                     			if($factura->total_viaje!=0) { 
+                     				echo number_format($factura->total_viaje,2,",","."); 
+                     			}
+                     			*/
                      		?>" disabled /> 
                      &nbsp;
                     <br />												
@@ -241,8 +242,9 @@
 						 &nbsp;
                     <strong style="padding-right:5px;">FECHA DE PAGO</strong>
                     <input name="txtMercancia" type="text" size="8" style="text-transform:uppercase"  
-						 value="<?php echo mostrarFecha($factura->fecha_pago); ?>" disabled />	 
-                    <br /><br />
+						 value="<?php echo mostrarFecha($factura->fecha_pago); ?>" disabled />		 
+                    <br /><br /> 
+					<?php if($factura->forma_pago!="EFECTIVO") { ?>
                     <strong style="padding-right:5px;">N&deg;</strong>
                     <input name="txtMercancia" type="text" size="30" style="text-transform:uppercase"  
 						 value="<?php echo $factura->numero_pago; ?>" disabled />
@@ -251,6 +253,7 @@
                     <input name="txtMercancia" type="text" size="53" style="text-transform:uppercase"  
 						 value="<?php echo $factura->banco; ?>" disabled />	
 					<br /><br />
+					<?php } ?>
 					<?php if($factura->motivo!="") { ?>
                     <strong style="padding-right:5px;">OBSERVACIONES</strong>
                     <br />
