@@ -719,12 +719,6 @@ function validate_busqueda_envio_form(form)
 				return false;
 		}	
 	}	
-	else {
-		if (form.txtBusqueda.value=="" && form.cmbEstatusEnvio.selectedIndex=="") {
-			form.txtBusqueda.focus();
-			return false;
-		}
-	}
 
 }
 //************************************************

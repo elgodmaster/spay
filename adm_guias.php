@@ -28,6 +28,9 @@
 		}	
 		
 	}
+	
+	$variables = "page=".$_GET["page"]."&cmbEstatusGuia=".$_REQUEST["cmbEstatusGuia"]."&cmbAnoI=".$_REQUEST["cmbAnoI"]."&cmbMesI=".$_REQUEST["cmbMesI"]."&cmbDiaI=".$_REQUEST["cmbDiaI"];
+	
 ?>	
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
@@ -49,16 +52,16 @@
                     		<td colspan="6">
                     		<form name="frmEnvio" action="adm_guias.php" method="post" 
                     		 enctype="multipart/form-data" onSubmit="return validate_busqueda_envio_form(this);">                  		 
-                    		  	<?php if($_POST["action"]=="Buscar") { ?>
+                    		  	<?php if(isset($_REQUEST["txtBusqueda"]) && $_REQUEST["txtBusqueda"]!="") { ?>
                     		 	<input type="button" class="button" value="LIMPIAR BUSQUEDA" 
                     		 	 onclick="javascript:document.location.href = 'adm_guias.php';" />
                     		 	<?php } else { ?>
                     		 	&nbsp;<strong>ESTATUS</strong>&nbsp;
                     		 	<select name="cmbEstatusGuia">
                     		 		<option value=""></option>
-                    		 		<option value=0>TEMPORAL</option>
-                    		 		<option value=1>EN RUTA</option>
-                    		 		<option value=2>ENTREGADA</option>
+                    		 		<option value=0 <?php if($_REQUEST["cmbEstatusGuia"]==0 && $_REQUEST["cmbEstatusGuia"]!="") {?> selected <?php } ?>>TEMPORAL</option>
+                    		 		<option value=1 <?php if($_REQUEST["cmbEstatusGuia"]==1) {?> selected <?php } ?>>EN RUTA</option>
+                    		 		<option value=2 <?php if($_REQUEST["cmbEstatusGuia"]==2) {?> selected <?php } ?>>ENTREGADA</option>
                     		 	</select>
                     		 	&nbsp;
 								<strong>FECHA</strong>
@@ -69,7 +72,7 @@
 									$i=1;
 									while ($i <= 31) {
 								?>	
-									<option value="<?php echo $i; ?>">
+									<option value="<?php echo $i; ?>" <?php if($_REQUEST["cmbDiaI"]==$i) { ?> selected <?php } ?>>
 									<?php echo $i; ?>
 									</option>
 								<?php 
@@ -83,7 +86,7 @@
 									$i=1;
 									while ($i <= 12) {
 								?>	
-									<option value="<?php echo $i; ?>">
+									<option value="<?php echo $i; ?>" <?php if($_REQUEST["cmbMesI"]==$i) { ?> selected <?php } ?>>
 									<?php echo $i; ?>
 									</option>
 								<?php 
@@ -97,7 +100,7 @@
 									$i = date("Y");
 									while ($i >= date("Y")-10) {
 								?>	
-									<option value="<?php echo $i; ?>">
+									<option value="<?php echo $i; ?>" <?php if($_REQUEST["cmbAnoI"]==$i) { ?> selected <?php } ?>>
 									<?php echo $i; ?>
 									</option>
 								<?php 
@@ -147,11 +150,11 @@
 						             AND g.ind_activo < 2
 						             AND g.id_chofer = c.id "; 				           
 						
-						if($_POST["cmbEstatusGuia"]!="") {
-							$query .= " AND g.ind_guia=".$_POST["cmbEstatusGuia"];
+						if($_REQUEST["cmbEstatusGuia"]!="") {
+							$query .= " AND g.ind_guia=".$_REQUEST["cmbEstatusGuia"];
 						}		
 
-						$fechaI = $_POST["cmbAnoI"]."-".$_POST["cmbMesI"]."-".$_POST["cmbDiaI"];
+						$fechaI = $_REQUEST["cmbAnoI"]."-".$_REQUEST["cmbMesI"]."-".$_REQUEST["cmbDiaI"];
 						
 						if($fechaI!="--") {
 							$query .= " AND g.fecha_creacion='".$fechaI."' "; 
@@ -203,27 +206,27 @@
 								<strong><?php echo indGuiaStr($row->ind_guia); ?></strong>
                     		</td>
                             <td align="left">
-                                <a href="adm_consultar_guia.php?id=<?php echo $row->id; ?>" title="Consultar">
+                                <a href="adm_consultar_guia.php?id=<?php echo $row->id; ?>&<?php echo $variables; ?>" title="Consultar">
                                 	<img src="images/icons/zoom.png" align="texttop" border="0" />
                            		</a>
-                                <a href="adm_guia_de_entrega.php?id=<?php echo $row->id; ?>" title="Imprimir Gu&iacute;a">
+                                <a href="adm_guia_de_entrega.php?id=<?php echo $row->id; ?>&<?php echo $variables; ?>" title="Imprimir Gu&iacute;a">
                                 	<img src="images/icons/printer.png" align="texttop" border="0" />
                            		</a>
                            		<?php if($row->ind_guia==0) { ?>
-                            	<a href="adm_guias.php?action=EnviarRuta&id=<?php echo $row->id; ?>" title="Enviar a Ruta">
+                            	<a href="adm_guias.php?action=EnviarRuta&id=<?php echo $row->id; ?>&<?php echo $variables; ?>" title="Enviar a Ruta">
                                 	<img align="texttop" src="images/icons/lorry.png" border="0"  
                                      onclick="javascript:return confirm('Esta seguro que desea enviar esta Guia a Ruta?');"/>
                                	</a>                            	
-                            	<a href="adm_modificar_guia.php?action=Modificar&id=<?php echo $row->id; ?>" title="Modificar">
+                            	<a href="adm_modificar_guia.php?action=Modificar&id=<?php echo $row->id; ?>&<?php echo $variables; ?>" title="Modificar">
                                 	<img align="texttop" src="images/icons/pencil.png" border="0" />
                                	</a>
-                                <a href="adm_guias.php?action=Eliminar&id=<?php echo $row->id; ?>" title="Eliminar">
+                                <a href="adm_guias.php?action=Eliminar&id=<?php echo $row->id; ?>&<?php echo $variables; ?>" title="Eliminar">
                                 	<img src="images/icons/cross.png" align="texttop" border="0" 
                                      onclick="javascript:return confirm('Esta seguro que desea eliminar?');" />
                            		</a>
                            		<?php } ?>
                            		<?php if($row->ind_guia==1) { ?>
-                                <a href="adm_guias.php?action=MarcarEntregada&id=<?php echo $row->id; ?>" title="Marcar como Entregada">
+                                <a href="adm_guias.php?action=MarcarEntregada&id=<?php echo $row->id; ?>&<?php echo $variables; ?>" title="Marcar como Entregada">
                                 	<img src="images/icons/accept.png" align="texttop" border="0"  
                                      onclick="javascript:return confirm('Esta seguro que desea marcar esta Guia como Entregada?');"/>
                            		</a>
@@ -240,7 +243,7 @@
                 		</tr>                        
                         <tr>
                         	<td colspan="11" align="center">
-                            <?php printPaginationNavigation($page,$lastPage); ?>
+                            <?php printPaginationNavigation($page,$lastPage, $variables); ?>
                             </td>
                         </tr>
             			<tr>

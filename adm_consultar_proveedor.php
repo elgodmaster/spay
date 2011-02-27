@@ -5,6 +5,7 @@
 <?php include("inc_functions.php"); ?>	
 <?php 
 	$proveedor = obtenerProveedor($link,$_GET["id"]);
+	$variables = "page=".$_GET["page"]."&txtBusqueda=".$_REQUEST["txtBusqueda"];	
 ?>	
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
@@ -21,7 +22,7 @@
 
 				<h1>Consultar Proveedor</h1>
 				<div align="right">
-				<a href="adm_proveedores.php" class="orange"><strong><< Regresar</strong></a>
+				<a href="adm_proveedores.php?<?php echo $variables; ?>" class="orange"><strong><< Regresar</strong></a>
 				</div>	          
 				<br />                	
  					<p>											

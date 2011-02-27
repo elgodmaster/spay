@@ -57,9 +57,10 @@
 			$motivo = strtoupper($_POST["txtMotivo"]);
 			$action_result = anularFactura($link, $id, $motivo);
 		}
-		
-		
 	}
+
+	$variables = "page=".$_GET["page"]."&txtBusqueda=".$_REQUEST["txtBusqueda"]."&cmbEstatusFactura=".$_REQUEST["cmbEstatusFactura"]."&cmbAnoI=".$_REQUEST["cmbAnoI"]."&cmbMesI=".$_REQUEST["cmbMesI"]."&cmbDiaI=".$_REQUEST["cmbDiaI"];
+	
 ?>	
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
@@ -93,7 +94,7 @@
                     		<td colspan="6">
                     		<form name="frmEnvio" action="adm_facturas.php" method="post" 
                     		 enctype="multipart/form-data" onSubmit="return validate_busqueda_factura_form(this);">                  		 
-                    		  	<?php if($_POST["action"]=="Buscar") { ?>
+                    		  	<?php if(isset($_REQUEST["txtBusqueda"]) && $_REQUEST["txtBusqueda"]!="") { ?>
                     		 	<input type="button" class="button" value="LIMPIAR BUSQUEDA" 
                     		 	 onclick="javascript:document.location.href = 'adm_facturas.php';" />
                     		 	<?php } else { ?>
@@ -101,9 +102,9 @@
                     		 	&nbsp;<strong>ESTATUS</strong>&nbsp;
                     		 	<select name="cmbEstatusFactura">
                     		 		<option value=""></option>
-                    		 		<option value=1>POR COBRAR</option>
-                    		 		<option value=2>COBRADA</option>
-                    		 		<option value=3>ANULADA</option>
+                    		 		<option value=1 <?php if($_REQUEST["cmbEstatusFactura"]==1) {?> selected <?php } ?>>POR COBRAR</option>
+                    		 		<option value=2 <?php if($_REQUEST["cmbEstatusFactura"]==2) {?> selected <?php } ?>>COBRADA</option>
+                    		 		<option value=3 <?php if($_REQUEST["cmbEstatusFactura"]==3) {?> selected <?php } ?>>ANULADA</option>
                     		 	</select>
                     		 	&nbsp;
 								<strong>FECHA</strong>
@@ -114,7 +115,7 @@
 									$i=1;
 									while ($i <= 31) {
 								?>	
-									<option value="<?php echo $i; ?>">
+									<option value="<?php echo $i; ?>" <?php if($_REQUEST["cmbDiaI"]==$i) { ?> selected <?php } ?>>
 									<?php echo $i; ?>
 									</option>
 								<?php 
@@ -128,7 +129,7 @@
 									$i=1;
 									while ($i <= 12) {
 								?>	
-									<option value="<?php echo $i; ?>">
+									<option value="<?php echo $i; ?>" <?php if($_REQUEST["cmbMesI"]==$i) { ?> selected <?php } ?>>
 									<?php echo $i; ?>
 									</option>
 								<?php 
@@ -142,7 +143,7 @@
 									$i = date("Y");
 									while ($i >= date("Y")-10) {
 								?>	
-									<option value="<?php echo $i; ?>">
+									<option value="<?php echo $i; ?>" <?php if($_REQUEST["cmbAnoI"]==$i) { ?> selected <?php } ?>>
 									<?php echo $i; ?>
 									</option>
 								<?php 
@@ -191,20 +192,20 @@
 						                 LEFT JOIN ts_proveedor p ON f.id_proveedor = p.id ) 
 						           WHERE f.ind_activo < 2 "; 		
 
-						if($_POST["txtBusqueda"]!="") {
-							$query .= " AND f.numero_factura LIKE '%".$_POST["txtBusqueda"]."%' ";
+						if($_REQUEST["txtBusqueda"]!="") {
+							$query .= " AND f.numero_factura LIKE '%".$_REQUEST["txtBusqueda"]."%' ";
 						}			           
 
-						if($_POST["cmbEstatusFactura"]!="") {
-							$query .= " AND f.ind_factura=".$_POST["cmbEstatusFactura"];
+						if($_REQUEST["cmbEstatusFactura"]!="") {
+							$query .= " AND f.ind_factura=".$_REQUEST["cmbEstatusFactura"];
 						}		
-						if($_POST["action"]=="Buscar") {
-							$fechaI = $_POST["cmbAnoI"]."-".$_POST["cmbMesI"]."-".$_POST["cmbDiaI"];
-							
-							if($fechaI!="--") {
-								$query .= " AND f.fecha_creacion='".$fechaI."' "; 
-							}
+	
+						$fechaI = $_REQUEST["cmbAnoI"]."-".$_REQUEST["cmbMesI"]."-".$_REQUEST["cmbDiaI"];
+						
+						if($fechaI!="--") {
+							$query .= " AND f.fecha_creacion='".$fechaI."' "; 
 						}
+							
 						$query .= " ORDER BY f.fecha_creacion DESC, id DESC ";	
 						
 						$result = obtenerResultset($link,$query);
@@ -246,21 +247,21 @@
                     		</td>
                             <td align="left">
                             	<?php if($row->tipo_factura=="P") { ?>
-                                <a href="adm_consultar_factura_proveedor.php?id=<?php echo $row->id; ?>" title="Ver Factura">
+                                <a href="adm_consultar_factura_proveedor.php?id=<?php echo $row->id; ?>&<?php echo $variables; ?>" title="Ver Factura">
                                 	<img src="images/icons/zoom.png" align="texttop" border="0" />
                            		</a>
                            		<?php } ?>
 								<?php if($row->tipo_factura=="C") { ?>
-                                <a href="adm_consultar_factura_cliente.php?id=<?php echo $row->id; ?>" title="Ver Factura">
+                                <a href="adm_consultar_factura_cliente.php?id=<?php echo $row->id; ?>&<?php echo $variables; ?>" title="Ver Factura">
                                 	<img src="images/icons/zoom.png" align="texttop" border="0" />
                            		</a>
                            		<?php } ?>
                            		<?php if($row->ind_factura==1) { ?>
-                                <a href="adm_actualizar_factura.php?action=MarcarCobrada&id=<?php echo $row->id; ?>" title="Marcar como Cobrada">
+                                <a href="adm_actualizar_factura.php?action=MarcarCobrada&id=<?php echo $row->id; ?>&<?php echo $variables; ?>" title="Marcar como Cobrada">
                                 	<img src="images/icons/accept.png" align="texttop" border="0"  
                                      onclick="javascript:return confirm('Esta seguro que desea marcar esta Factura como cobrada?');"/>
                            		</a>
-                                <a href="adm_actualizar_factura.php?action=Anular&id=<?php echo $row->id; ?>" title="Anular">
+                                <a href="adm_actualizar_factura.php?action=Anular&id=<?php echo $row->id; ?>&<?php echo $variables; ?>" title="Anular">
                                 	<img src="images/icons/cancel.png" align="texttop" border="0"  
                                      onclick="javascript:return confirm('Esta seguro que desea anular esta Factura?');"/>
                            		</a>
@@ -277,7 +278,7 @@
                 		</tr>                        
                         <tr>
                         	<td colspan="11" align="center">
-                            <?php printPaginationNavigation($page,$lastPage); ?>
+                            <?php printPaginationNavigation($page,$lastPage, $variables); ?>
                             </td>
                         </tr>
             			<tr>

@@ -138,7 +138,7 @@
                                  style="vertical-align:text-bottom" onClick="sumarGuia(frmG)" />
                 			</td>
                 			<td <?php if($inactiva) {?> style="color:#999;" <?php } ?>>
-								<?php echo substr(obtenerProveedorStr($link, $row->id_proveedor),0,22); ?>
+								<?php echo substr(obtenerProveedorStr($link, $row->id_proveedor),0,20); ?>
                     		</td>
                 			<td <?php if($inactiva) {?> style="color:#999;" <?php } ?> align="center">
 								<?php echo $row->bultos; ?>

@@ -9,6 +9,8 @@
 	if($envio->id_guia!="") {
 		$guia = obtenerGuia($link, $envio->id_guia);
 	}
+	
+	$variables = "page=".$_GET["page"]."&txtBusqueda=".$_REQUEST["txtBusqueda"]."&cmbEstatusEnvio=".$_REQUEST["cmbEstatusEnvio"]."&cmbAnoI=".$_REQUEST["cmbAnoI"]."&cmbMesI=".$_REQUEST["cmbMesI"]."&cmbDiaI=".$_REQUEST["cmbDiaI"];
 ?>	
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
@@ -25,7 +27,7 @@
 					
 				<h1>Consultar Env&iacute;o</h1>
 				<div align="right">
-				<a href="adm_envios.php" class="orange"><strong><< Regresar</strong></a>
+				<a href="adm_envios.php?<?php echo $variables; ?>" class="orange"><strong><< Regresar</strong></a>
 				</div>				   
                 <div style="padding-left:10px">
                 	<p>

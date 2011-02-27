@@ -13,6 +13,9 @@
 	$total_flete =  $total_flete_mercancia + $total_flete_peso + $total_viaje;
 	$total_iva = $total_flete*($factura->iva/100);
 	$total_seguro = $factura->total_mercancia*($factura->seguro/100);
+	
+	$variables = "page=".$_GET["page"]."&txtBusqueda=".$_REQUEST["txtBusqueda"]."&cmbEstatusFactura=".$_REQUEST["cmbEstatusFactura"]."&cmbAnoI=".$_REQUEST["cmbAnoI"]."&cmbMesI=".$_REQUEST["cmbMesI"]."&cmbDiaI=".$_REQUEST["cmbDiaI"];
+	
 ?>	
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
@@ -29,7 +32,7 @@
 					
 				<h1>Ver Factura</h1>				
 				<div align="right" style="padding:0px 0px 20px 15px">
-				<a href="adm_facturas.php">
+				<a href="adm_facturas.php?<?php echo $variables; ?>">
                     <strong><< Regresar</strong>
               	</a>
               	</div>				
@@ -124,14 +127,9 @@
                     <strong style="padding-right:5px"></strong>
 					<input name="txtTotalFleteMercancia" type="text" size="16" style="text-align:right; border:2px solid #666; font-weight:bold;" 
                      value="<?php
-                     			if($factura->total_flete_mercancia!=0 || $factura->total_viaje!=0) { 
-                     				echo number_format($factura->total_flete,2,",","."); 
+                     			if($total_flete_mercancia!=0 || $total_viaje!=0) { 
+                     				echo number_format($total_flete,2,",","."); 
                      			}
-                     			/*
-                     			if($factura->total_viaje!=0) { 
-                     				echo number_format($factura->total_viaje,2,",","."); 
-                     			}
-                     			*/
                      		?>" disabled /> 
                      &nbsp;
                     <br />												
