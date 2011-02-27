@@ -8,7 +8,7 @@
 	
 	// PAGE
 	function getPage() {
-		if(isset($_GET["page"])) {
+		if(isset($_GET["page"]) && $_GET["page"]!="") {
 			return $_GET["page"]; 	
 		}
 		else {
@@ -27,13 +27,25 @@
 	}
 	
 	// PRINT NAVIGATION LINKS FOR NAVIGATION
-	function printPaginationNavigation($page,$lastPage) {
+	function printPaginationNavigation($page,$lastPage, $variables=NULL) {
+	
+		$variables = substr($variables,strpos($variables,"&")+1);
 	
 		if($page > 1) {
-			$string =  "<a href='".$_SERVER['PHP_SELF']."?page=1' title='Primera P&aacute;gina'>";
+			if($variables==NULL) {
+				$string =  "<a href='".$_SERVER['PHP_SELF']."?page=1' title='Primera P&aacute;gina'>";
+			}
+			else {
+				$string =  "<a href='".$_SERVER['PHP_SELF']."?page=1&".$variables."' title='Primera P&aacute;gina'>";
+			}
 			$string .= "<img align='texttop' src='images/icons/resultset_first.png' border='0' />"; 
 			$string .= "</a>&nbsp;";
-			$string .=  "<a href='".$_SERVER['PHP_SELF']."?page=".($page-1)."' title='Anterior'>";
+			if($variables==NULL) {
+				$string .=  "<a href='".$_SERVER['PHP_SELF']."?page=".($page-1)."' title='Anterior'>";
+			}
+			else {
+				$string .=  "<a href='".$_SERVER['PHP_SELF']."?page=".($page-1)."&".$variables."' title='Anterior'>";	
+			}
 			$string .= "<img align='texttop' src='images/icons/resultset_previous.png' border='0' />"; 
 			$string .= "</a>&nbsp;";		
 			echo $string;	
@@ -47,10 +59,20 @@
 		}
 		
 		if($page < $lastPage) {
-			$string =  "<a href='".$_SERVER['PHP_SELF']."?page=".($page+1)."' title='Siguiente'>";
+			if($variables==NULL) {
+				$string =  "<a href='".$_SERVER['PHP_SELF']."?page=".($page+1)."' title='Siguiente'>";
+			}
+			else {
+				$string =  "<a href='".$_SERVER['PHP_SELF']."?page=".($page+1)."&".$variables."' title='Siguiente'>";
+			}
 			$string .= "<img align='texttop' src='images/icons/resultset_next.png' border='0' />"; 
 			$string .= "</a>&nbsp;";
-			$string .=  "<a href='".$_SERVER['PHP_SELF']."?page=".$lastPage."' title='&Uacute;ltima P&aacute;gina'>";
+			if($variables==NULL) {
+				$string .=  "<a href='".$_SERVER['PHP_SELF']."?page=".$lastPage."' title='&Uacute;ltima P&aacute;gina'>";
+			}
+			else {
+				$string .=  "<a href='".$_SERVER['PHP_SELF']."?page=".$lastPage."&".$variables."' title='&Uacute;ltima P&aacute;gina'>";	
+			}
 			$string .= "<img align='texttop' src='images/icons/resultset_last.png' border='0' />"; 
 			$string .= "</a>&nbsp;";		
 			echo $string;	

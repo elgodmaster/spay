@@ -67,16 +67,16 @@
 					<form name="frmG" action="adm_generar_factura_proveedor.php" method="post" enctype="multipart/form-data" 
                 	 onSubmit="return validate_preparar_factura_form(frmG);"  
                      style="background-color:#FFF; border:none;	margin:0px; padding: 0px;">       
-					<table style="padding-left:10px; font-size:11px" width="860px">
+					<table style="padding-left:10px; font-size:11px" width="950px">
             			<tr>
                     		<td colspan="11"><hr></td>
                 		</tr>            	
                 		<tr>
                 			<td width="40"><strong></strong></td>
-                			<td width="250"><strong>PROVEEDOR</strong></td>
+                			<td width="150"><strong>PROVEEDOR</strong></td>
                 			<td width="40" align="center"><strong>BULTOS</strong></td>
                 			<td width="60" align="center"><strong>REMESA</strong></td>
-                			<td width="70" align="center"><strong>FACTURA</strong></td>
+                			<td width="90" align="center"><strong>FACTURA</strong></td>
                 			<td width="250"><strong>CLIENTE</strong></td>
                 			<td width="110"><strong>DESTINO</strong></td>
                     		<td width="70" align="right"><strong>MERCANCIA</strong></td>
@@ -144,10 +144,10 @@
 								<?php echo str_pad($row->factura, 6, "0", STR_PAD_LEFT); ?>
                     		</td>
                 			<td <?php if($inactiva) {?> style="color:#999;" <?php } ?>>
-								<?php echo substr(obtenerClienteStr($link, $row->id_cliente),0,25); ?>
+								<?php echo substr(obtenerClienteStr($link, $row->id_cliente),0,32); ?>
                     		</td> 
                 			<td <?php if($inactiva) {?> style="color:#999;" <?php } ?>>
-								<?php echo substr(obtenerDestinoStr($link, $row->id_destino),0,15); ?>
+								<?php echo substr(obtenerDestinoStr($link, $row->id_destino),0,16); ?>
                     		</td>                   		
                     		<td align="right">
 								<?php echo number_format($row->mercancia,2,",","."); ?>

@@ -68,9 +68,9 @@
    <span width="150px" align="right" style="padding:17px 0px 0px 165px; font-weight:bold;
     font-size:18px; font-family:Arial, Helvetica, sans-serif;">
 		<?php
-           if($factura->total_flete_mercancia!=0 || $factura->total_viaje!=0) { 
-             echo number_format($factura->total_flete,2,",","."); 
-           }
+           	if($total_flete_mercancia!=0 || $total_viaje!=0) { 
+           		echo number_format($total_flete,2,",","."); 
+      		}
       	?>
    </span>  
    <div>&nbsp;</div>    

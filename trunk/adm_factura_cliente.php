@@ -57,7 +57,7 @@
 					<form name="frmG" action="adm_generar_factura_cliente.php" method="post" enctype="multipart/form-data" 
                 	 onSubmit="return validate_preparar_factura_form(this);"  
                      style="background-color:#FFF; border:none;	margin:0px; padding: 0px;">       
-					<table style="padding-left:10px; font-size:11px" width="860px"> 
+					<table style="padding-left:10px; font-size:11px" width="950px"> 
             			<tr>
                     		<td colspan="11"><hr></td>
                 		</tr>            	
@@ -133,7 +133,7 @@
                                  style="vertical-align:text-bottom" onClick="sumarFacturasCliente(frmG)" />
                 			</td>
                 			<td>
-								<?php echo substr(obtenerProveedorStr($link, $row->id_proveedor),0,22); ?>
+								<?php echo substr(obtenerProveedorStr($link, $row->id_proveedor),0,25); ?>
                     		</td>
                 			<td <?php if($inactiva) {?> style="color:#999;" <?php } ?> align="center">
 								<?php echo $row->bultos; ?>
@@ -145,7 +145,7 @@
 								<?php echo str_pad($row->factura, 6, "0", STR_PAD_LEFT); ?>
                     		</td>
                 			<td <?php if($inactiva) {?> style="color:#999;" <?php } ?>>
-								<?php echo substr(obtenerClienteStr($link, $row->id_cliente),0,33); ?>
+								<?php echo substr(obtenerClienteStr($link, $row->id_cliente),0,35); ?>
                     		</td> 
                 			<td <?php if($inactiva) {?> style="color:#999;" <?php } ?>>
 								<?php echo substr(obtenerDestinoStr($link, $row->id_destino),0,15); ?>

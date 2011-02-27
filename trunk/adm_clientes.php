@@ -59,6 +59,8 @@
 		}			
 		
 	}
+	
+	$variables = "page=".$_GET["page"]."&txtBusqueda=".$_REQUEST["txtBusqueda"];
 ?>	
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
@@ -81,7 +83,7 @@
                     		<td colspan="6">
                     		<form name="frmEnvio" action="adm_clientes.php" method="post" 
                     		 enctype="multipart/form-data" onSubmit="return validate_busqueda_form(this);">                   		 
-                    		  	<?php if(isset($_POST["txtBusqueda"])) { ?>
+                    		  	<?php if(isset($_REQUEST["txtBusqueda"]) && $_REQUEST["txtBusqueda"]!="") { ?>
                     		 	<input type="button" class="button" value="LIMPIAR BUSQUEDA" 
                     		 	 onclick="javascript:document.location.href = 'adm_clientes.php';" />
                     		 	<?php } else { ?>
@@ -121,9 +123,9 @@
 						           WHERE c.id_usuario = u.id 
 						             AND c.ind_activo < 2 "; 
 
-						if($_POST["txtBusqueda"]!="") {
-							$query .= " AND  (c.nombre LIKE '%".$_POST["txtBusqueda"]."%' 
-							               OR c.rif LIKE '%".$_POST["txtBusqueda"]."%' )";
+						if($_REQUEST["txtBusqueda"]!="") {
+							$query .= " AND  (c.nombre LIKE '%".$_REQUEST["txtBusqueda"]."%' 
+							               OR c.rif LIKE '%".$_REQUEST["txtBusqueda"]."%' )";
 						}						           		
 						
 						$query .= " ORDER BY c.nombre ";	
@@ -166,22 +168,22 @@
 								<?php echo date("d-m-Y", strtotime($row->fecha_modificacion)); ?>
                   			</td>
                             <td align="left"> 
-                                <a href="adm_consultar_cliente.php?id=<?php echo $row->id; ?>" title="Consultar">
+                                <a href="adm_consultar_cliente.php?&id=<?php echo $row->id; ?>&<?php echo $variables; ?>" title="Consultar">
                                 	<img src="images/icons/zoom.png" align="texttop" border="0" />
                            		</a>
-                            	<a href="adm_clientes.php?action=Modificar&id=<?php echo $row->id; ?>" title="Modificar">
+                            	<a href="adm_clientes.php?action=Modificar&id=<?php echo $row->id; ?>&<?php echo $variables; ?>" title="Modificar">
                                 	<img align="texttop" src="images/icons/pencil.png" border="0" />
                                	</a>
-                                <a href="adm_clientes.php?action=Eliminar&id=<?php echo $row->id; ?>" title="Eliminar">
+                                <a href="adm_clientes.php?action=Eliminar&id=<?php echo $row->id; ?>&<?php echo $variables; ?>" title="Eliminar">
                                 	<img src="images/icons/cross.png" align="texttop" border="0" 
                                      onclick="javascript:return confirm('Esta seguro que desea eliminar?');" />
                            		</a>
                                	<?php if($inactiva) { ?>                               	
-                            	<a href="adm_clientes.php?action=Activar&id=<?php echo $row->id; ?>" title="Activar">
+                            	<a href="adm_clientes.php?action=Activar&id=<?php echo $row->id; ?>&<?php echo $variables; ?>" title="Activar">
                                 	<img align="texttop" src="images/icons/bullet_green.png" border="0" />
                                	</a>
                                	<?php } else { ?>
-                            	<a href="adm_clientes.php?action=Inactivar&id=<?php echo $row->id; ?>" title="Inactivar">
+                            	<a href="adm_clientes.php?action=Inactivar&id=<?php echo $row->id; ?>&<?php echo $variables; ?>" title="Inactivar">
                                 	<img align="texttop" src="images/icons/bullet_red.png" border="0" />
                                	</a>  
                                	<?php } ?>
@@ -197,7 +199,7 @@
                 		</tr>                        
                         <tr>
                         	<td colspan="11" align="center">
-                            <?php printPaginationNavigation($page,$lastPage); ?>
+                            <?php printPaginationNavigation($page,$lastPage, $variables); ?>
                             </td>
                         </tr>
             			<tr>
@@ -287,7 +289,7 @@
 				</form>
                 <?php if($_GET["action"]=="Modificar") { ?>
                 <p>
-                	<a href="adm_clientes.php">
+                	<a href="adm_clientes.php?<?php echo $variables; ?>">
                 	<img align="texttop" src="images/icons/add.png" border="0" /> 
                 	<strong>Agregar Cliente	</strong>
                     </a>

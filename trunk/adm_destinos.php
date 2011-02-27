@@ -143,19 +143,19 @@
 								?>
                     		</td>
                             <td align="center">
-                            	<a href="adm_destinos.php?action=Modificar&id=<?php echo $row->id; ?>" title="Modificar">
+                            	<a href="adm_destinos.php?action=Modificar&id=<?php echo $row->id; ?>&page=<?php echo $_GET["page"]?>" title="Modificar">
                                 	<img align="texttop" src="images/icons/pencil.png" border="0" />
                                	</a>
-                                <a href="adm_destinos.php?action=Eliminar&id=<?php echo $row->id; ?>" title="Eliminar">
+                                <a href="adm_destinos.php?action=Eliminar&id=<?php echo $row->id; ?>&page=<?php echo $_GET["page"]?>" title="Eliminar">
                                 	<img src="images/icons/cross.png" align="texttop" border="0" 
                                      onclick="javascript:return confirm('Esta seguro que desea eliminar?');" />
                            		</a>
                                	<?php if($inactiva) { ?>                               	
-                            	<a href="adm_destinos.php?action=Activar&id=<?php echo $row->id; ?>" title="Activar">
+                            	<a href="adm_destinos.php?action=Activar&id=<?php echo $row->id; ?>&page=<?php echo $_GET["page"]?>" title="Activar">
                                 	<img align="texttop" src="images/icons/bullet_green.png" border="0" />
                                	</a>
                                	<?php } else { ?>
-                            	<a href="adm_destinos.php?action=Inactivar&id=<?php echo $row->id; ?>" title="Inactivar">
+                            	<a href="adm_destinos.php?action=Inactivar&id=<?php echo $row->id; ?>&page=<?php echo $_GET["page"]?>" title="Inactivar">
                                 	<img align="texttop" src="images/icons/bullet_red.png" border="0" />
                                	</a>  
                                	<?php } ?>
@@ -255,7 +255,7 @@
 				</form>
                 <?php if($_GET["action"]=="Modificar") { ?>
                 <p>
-                	<a href="adm_destinos.php">
+                	<a href="adm_destinos.php?page=<?php echo $_GET["page"]?>">
                 	<img align="texttop" src="images/icons/add.png" border="0" /> 
                 	<strong>Agregar Destino</strong>
                     </a>

@@ -39,6 +39,8 @@
 		}	
 		
 	}
+	
+	$variables = "page=".$_GET["page"]."&txtBusqueda=".$_REQUEST["txtBusqueda"]."&cmbEstatusEnvio=".$_REQUEST["cmbEstatusEnvio"]."&cmbAnoI=".$_REQUEST["cmbAnoI"]."&cmbMesI=".$_REQUEST["cmbMesI"]."&cmbDiaI=".$_REQUEST["cmbDiaI"];
 ?>	
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
@@ -60,7 +62,7 @@
                     		<td colspan="6">
                     		<form name="frmEnvio" action="adm_envios.php" method="post" 
                     		 enctype="multipart/form-data" onSubmit="return validate_busqueda_envio_form(this);">                  		 
-                    		  	<?php if(isset($_POST["txtBusqueda"])) { ?>
+                    		  	<?php if(isset($_REQUEST["txtBusqueda"]) && $_REQUEST["txtBusqueda"]!="") { ?>
                     		 	<input type="button" class="button" value="LIMPIAR BUSQUEDA" 
                     		 	 onclick="javascript:document.location.href = 'adm_envios.php';" />
                     		 	<?php } else { ?>
@@ -68,11 +70,11 @@
                     		 	&nbsp;<strong>ESTATUS</strong>&nbsp;
                     		 	<select name="cmbEstatusEnvio">
                     		 		<option value=""></option>
-                    		 		<option value=1>GENERADO</option>
-                    		 		<option value=2>EN RUTA</option>
-                    		 		<option value=3>ENTREGADO</option>
-                    		 		<option value=4>DEVUELTO</option>
-                    		 		<option value=5>NO ENTREGADO</option>
+                    		 		<option value=1 <?php if($_REQUEST["cmbEstatusEnvio"]==1) {?> selected <?php } ?>>GENERADO</option>
+                    		 		<option value=2 <?php if($_REQUEST["cmbEstatusEnvio"]==2) {?> selected <?php } ?>>EN RUTA</option>
+                    		 		<option value=3 <?php if($_REQUEST["cmbEstatusEnvio"]==3) {?> selected <?php } ?>>ENTREGADO</option>
+                    		 		<option value=4 <?php if($_REQUEST["cmbEstatusEnvio"]==4) {?> selected <?php } ?>>DEVUELTO</option>
+                    		 		<option value=5 <?php if($_REQUEST["cmbEstatusEnvio"]==5) {?> selected <?php } ?>>NO ENTREGADO</option>
                     		 	</select>
                     		 	&nbsp;
 								<strong>FECHA</strong>
@@ -83,7 +85,7 @@
 									$i=1;
 									while ($i <= 31) {
 								?>	
-									<option value="<?php echo $i; ?>">
+									<option value="<?php echo $i; ?>" <?php if($_REQUEST["cmbDiaI"]==$i) { ?> selected <?php } ?>>
 									<?php echo $i; ?>
 									</option>
 								<?php 
@@ -97,7 +99,7 @@
 									$i=1;
 									while ($i <= 12) {
 								?>	
-									<option value="<?php echo $i; ?>">
+									<option value="<?php echo $i; ?>"<?php if($_REQUEST["cmbMesI"]==$i) { ?> selected <?php } ?>>
 									<?php echo $i; ?>
 									</option>
 								<?php 
@@ -111,7 +113,7 @@
 									$i = date("Y");
 									while ($i >= date("Y")-10) {
 								?>	
-									<option value="<?php echo $i; ?>">
+									<option value="<?php echo $i; ?>"<?php if($_REQUEST["cmbAnoI"]==$i) { ?> selected <?php } ?>>
 									<?php echo $i; ?>
 									</option>
 								<?php 
@@ -163,20 +165,20 @@
 						             AND e.id_cliente = c.id 
 						             AND e.id_destino = d.id "; 
 
-						if($_POST["txtBusqueda"]!="") {
-							$query .= " AND (c.nombre LIKE '%".$_POST["txtBusqueda"]."%'
-										  OR p.nombre LIKE '%".$_POST["txtBusqueda"]."%' 
-										  OR d.nombre LIKE '%".$_POST["txtBusqueda"]."%' 
-										  OR e.remesa LIKE '%".$_POST["txtBusqueda"]."%' 
-										  OR e.factura LIKE '%".$_POST["txtBusqueda"]."%'  			
+						if($_REQUEST["txtBusqueda"]!="") {
+							$query .= " AND (c.nombre LIKE '%".$_REQUEST["txtBusqueda"]."%'
+										  OR p.nombre LIKE '%".$_REQUEST["txtBusqueda"]."%' 
+										  OR d.nombre LIKE '%".$_REQUEST["txtBusqueda"]."%' 
+										  OR e.remesa LIKE '%".$_REQUEST["txtBusqueda"]."%' 
+										  OR e.factura LIKE '%".$_REQUEST["txtBusqueda"]."%'  			
 										) ";
 						}						           
 						
-						if($_POST["cmbEstatusEnvio"]!="") {
-							$query .= " AND e.ind_envio=".$_POST["cmbEstatusEnvio"];
+						if($_REQUEST["cmbEstatusEnvio"]!="") {
+							$query .= " AND e.ind_envio=".$_REQUEST["cmbEstatusEnvio"];
 						}		
 
-						$fechaI = $_POST["cmbAnoI"]."-".$_POST["cmbMesI"]."-".$_POST["cmbDiaI"];
+						$fechaI = $_REQUEST["cmbAnoI"]."-".$_REQUEST["cmbMesI"]."-".$_REQUEST["cmbDiaI"];
 						
 						if($fechaI!="--") {
 							$query .= " AND e.fecha_creacion='".$fechaI."' "; 
@@ -221,20 +223,20 @@
 								<strong><?php echo indEnvioStr($link, $row->ind_envio); ?></strong>
                     		</td>
                             <td align="left">
-                                <a href="adm_consultar_envio.php?id=<?php echo $row->id; ?>" title="Consultar">
+                                <a href="adm_consultar_envio.php?id=<?php echo $row->id; ?>&<?php echo $variables; ?>" title="Consultar">
                                 	<img src="images/icons/zoom.png" align="texttop" border="0" />
                            		</a>
                            		<?php if($row->ind_envio==1 || $row->ind_envio>3) { ?>
-                            	<a href="adm_envios.php?action=Modificar&id=<?php echo $row->id; ?>" title="Modificar">
+                            	<a href="adm_envios.php?action=Modificar&id=<?php echo $row->id; ?>&&<?php echo $variables; ?>" title="Modificar">
                                 	<img align="texttop" src="images/icons/pencil.png" border="0" />
                                	</a>
-                                <a href="adm_envios.php?action=Eliminar&id=<?php echo $row->id; ?>" title="Eliminar">
+                                <a href="adm_envios.php?action=Eliminar&id=<?php echo $row->id; ?>&<?php echo $variables; ?>" title="Eliminar">
                                 	<img src="images/icons/cross.png" align="texttop" border="0" 
                                      onclick="javascript:return confirm('Esta seguro que desea eliminar?');" />
                            		</a>
                            		<?php } ?>
                            		<?php if($row->tipo_envio=="N") { ?>
-                                <a href="adm_nota_de_entrega.php?id=<?php echo $row->id; ?>" title="Nota de Entrega">
+                                <a href="adm_nota_de_entrega.php?id=<?php echo $row->id; ?>&<?php echo $variables; ?>" title="Nota de Entrega">
                                 	<img src="images/icons/page.png" align="texttop" border="0" />
                            		</a>
                            		<?php } ?>
@@ -250,7 +252,7 @@
                 		</tr>                        
                         <tr>
                         	<td colspan="11" align="center">
-                            <?php printPaginationNavigation($page,$lastPage); ?>
+                            <?php printPaginationNavigation($page,$lastPage, $variables); ?>
                             </td>
                         </tr>
             			<tr>

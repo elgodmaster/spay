@@ -76,7 +76,7 @@
                     		</td>
                 		</tr> 
                    </table>
-					<table style="padding-left:10px; font-size:11px" width="840px">
+					<table style="padding-left:10px; font-size:11px" width="950px">
             			<tr>
                     		<td colspan="11"><hr></td>
                 		</tr>            	
@@ -130,7 +130,7 @@
 	 							}
 	                    	?>
                 			<td <?php if($inactiva) {?> style="color:#999;" <?php } ?>>
-								<?php echo obtenerProveedorStr($link, $row->id_proveedor); ?>
+								<?php echo substr(obtenerProveedorStr($link, $row->id_proveedor),0,22); ?>
                     		</td>
                 			<td <?php if($inactiva) {?> style="color:#999;" <?php } ?> align="center">
 								<?php echo $row->bultos; ?>
@@ -142,7 +142,7 @@
 								<?php echo str_pad($row->factura, 6, "0", STR_PAD_LEFT); ?>
                     		</td>
                 			<td <?php if($inactiva) {?> style="color:#999;" <?php } ?>>
-								<?php echo obtenerClienteStr($link, $row->id_cliente); ?>
+								<?php echo substr(obtenerClienteStr($link, $row->id_cliente),0,33); ?>
                     		</td> 
                 			<td <?php if($inactiva) {?> style="color:#999;" <?php } ?>>
 								<?php echo obtenerDestinoStr($link, $row->id_destino); ?>
