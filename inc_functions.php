@@ -1127,7 +1127,7 @@
 	function eliminarDestino($link, $id) {
 	
 		// Si el destino es usado en envios se marca como eliminado
-		$query = "SELECT * FROM ts_envio WHERE id_estado = ".$id;
+		$query = "SELECT * FROM ts_envio WHERE id_destino = ".$id;
 		$result = mysql_query($query, $link);
 		if(mysql_num_rows($result) > 0) {
 			$query = "UPDATE ts_destino SET ind_activo = 2 WHERE id = ".$id	;

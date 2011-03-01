@@ -87,7 +87,7 @@
 						             AND e.id_cliente = c.id 
 						             AND e.id_destino = d.id 
 						             AND e.id_guia=".$guia->id."  
-						        ORDER BY e.fecha_creacion";	
+						        ORDER BY e.fecha_creacion DESC, e.remesa, e.factura";
 
 						$result = obtenerResultset($link,$query);
 					
