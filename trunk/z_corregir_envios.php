@@ -5,14 +5,14 @@
 <?php 	
 	if ($_POST["action"]=="Corregir") {
 		
-		$query = "UPDATE ts_factura
-		             SET proveedor='FLEJES VENEZOLANOS, C.A' 
-		           WHERE id=168";
+		$query = "UPDATE ts_envio
+		             SET id_destino=64 
+		           WHERE id IN (487,488)";
 		mysql_query($query, $link);
 		
-		$query = "UPDATE ts_factura
-		             SET proveedor='CELOVEN C.A' 
-		           WHERE id=190";
+		$query = "UPDATE ts_envio
+		             SET id_factura=122 
+		           WHERE id=368";
 		mysql_query($query, $link);
 		
 		$action_result = "exitoModificarDatos";
@@ -31,13 +31,13 @@
 			<?php include("inc_sidebar.php"); ?>	
 	  		<div id="main"> 
 				
-				<h1>Corregir Facturas</h1>
+				<h1>Corregir Envios</h1>
                 <p>
 				<?php include("inc_mensajes_crud.php"); ?>
                 </p>              
 
-                <h3>Para corregir las facturas con proveedores duplicados haga click en ACEPTAR.</h3>				
-				<form action="z_corregir_facturas.php" method="post" enctype="multipart/form-data" 
+                <h3>Para corregir los envios haga click en ACEPTAR.</h3>				
+				<form action="z_corregir_envios.php" method="post" enctype="multipart/form-data" 
                   style="background-color:#FFF; border-color:#FFF">	                
                    	<input name="action" type="hidden" value="Corregir" />  
                     <input name="id" type="hidden" value="<?php echo $_SESSION["id_usuario"]; ?>" />                 
