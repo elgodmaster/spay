@@ -6,13 +6,23 @@
 	if ($_POST["action"]=="Corregir") {
 		
 		$query = "UPDATE ts_envio
-		             SET id_destino=64 
-		           WHERE id IN (487,488)";
+		             SET id_destino=60 
+		           WHERE id = 541";
 		mysql_query($query, $link);
 		
 		$query = "UPDATE ts_envio
-		             SET id_factura=122 
-		           WHERE id=368";
+		             SET id_destino=67 
+		           WHERE id = 533";
+		mysql_query($query, $link);
+		
+		$query = "UPDATE ts_cliente
+		             SET id_destino=67 
+		           WHERE id = 347";
+		mysql_query($query, $link);
+		
+		$query = "UPDATE ts_cliente
+		             SET id_destino=60 
+		           WHERE id = 351";
 		mysql_query($query, $link);
 		
 		$action_result = "exitoModificarDatos";
@@ -36,8 +46,8 @@
 				<?php include("inc_mensajes_crud.php"); ?>
                 </p>              
 
-                <h3>Para corregir los envios haga click en ACEPTAR.</h3>				
-				<form action="z_corregir_envios.php" method="post" enctype="multipart/form-data" 
+                <h3>Para corregir los datos haga click en ACEPTAR.</h3>				
+				<form action="z_corregir_datos.php" method="post" enctype="multipart/form-data" 
                   style="background-color:#FFF; border-color:#FFF">	                
                    	<input name="action" type="hidden" value="Corregir" />  
                     <input name="id" type="hidden" value="<?php echo $_SESSION["id_usuario"]; ?>" />                 
