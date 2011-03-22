@@ -38,7 +38,12 @@
 				$id_cliente = $row->id_cliente;				
 			}
 			if($row->id_proveedor!=$ult_proveedor) {
-				$factura->proveedor .= obtenerProveedorStr($link, $row->id_proveedor).", ";
+				$factura->proveedor .= obtenerProveedorStr($link, $row->id_proveedor).",";
+				$string = preg_replace("/([,.?!])/"," \\1",$factura->proveedor);
+				$parts = explode(" ",$string);
+				$unique = array_unique($parts);
+				$unique = implode(" ",$unique);
+				$factura->proveedor = preg_replace("/\s([,.?!])/","\\1",$unique);
 			}
 			$ult_proveedor = $row->id_proveedor;
 			$factura->factura .= $row->factura.", ";
@@ -54,7 +59,7 @@
 		    if($factura->tipo_cobro=="") $factura->tipo_cobro = $row->tipo_cobro; 
 		}
 		
-		$factura->proveedor = substr($factura->proveedor,0,-2);
+		$factura->proveedor = substr($factura->proveedor,0,-1);
 		$factura->factura = substr($factura->factura,0,-2);
 		$factura->total_flete = $factura->total_flete_mercancia + $factura->total_flete_peso + $factura->total_viaje;
 		$factura->iva = obtenerIVA($link);

@@ -65,7 +65,7 @@
          }
         ?>
    </span>  
-   <span width="150px" align="right" style="padding:17px 0px 0px 165px; font-weight:bold;
+   <span width="150px" align="right" style="padding:17px 0px 0px 185px; font-weight:bold;
     font-size:18px; font-family:Arial, Helvetica, sans-serif;">
 		<?php
            	if($total_flete_mercancia!=0 || $total_viaje!=0) { 
@@ -90,7 +90,7 @@
         	}
         ?>
    </span>  
-   <span width="150px" align="right" style="padding:15px 0px 0px 140px; font-weight:bold;
+   <span width="150px" align="right" style="padding:15px 0px 0px 160px; font-weight:bold;
     font-size:18px; font-family:Arial, Helvetica, sans-serif;">
 		<?php
         	if($total_flete_peso!=0) { 
@@ -114,7 +114,7 @@
 			}
 		?>
    </span>  
-   <span width="150px" align="right" style="padding:15px 0px 0px 150px; font-weight:bold;
+   <span width="150px" align="right" style="padding:15px 0px 0px 170px; font-weight:bold;
     font-size:18px; font-family:Arial, Helvetica, sans-serif;">
 		<?php  
 			if($total_flete_peso!=0) { 
@@ -149,7 +149,7 @@
       		}		
 		?>
    </span>  
-   <span width="150px" align="right" style="padding:15px 0px 0px 150px; font-weight:bold;
+   <span width="150px" align="right" style="padding:15px 0px 0px 170px; font-weight:bold;
     font-size:18px; font-family:Arial, Helvetica, sans-serif;">
 		<?php 
 			if($factura->seguro!="") {    
@@ -163,7 +163,7 @@
       		}		
 		?>
    </span>      
-   <div align="centered" style="padding:23px 0px 0px 700px; font-weight:bold; 
+   <div align="centered" style="padding:23px 0px 0px 720px; font-weight:bold; 
     font-size:18px; font-family:Arial, Helvetica, sans-serif;">
   	 <?php
      	$valor = $total_flete;

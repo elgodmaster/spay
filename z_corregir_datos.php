@@ -5,24 +5,44 @@
 <?php 	
 	if ($_POST["action"]=="Corregir") {
 		
-		$query = "UPDATE ts_envio
-		             SET id_destino=60 
-		           WHERE id = 541";
+		$query = "UPDATE ts_factura
+		             SET proveedor='FLEJES VENEZOLANOS, C.A' 
+		           WHERE id = 244";
+		mysql_query($query, $link);
+		
+		$query = "UPDATE ts_factura
+		             SET proveedor='GRUPO CENTRAL XXI, C.A.'
+		           WHERE id = 251";
+		mysql_query($query, $link);
+		
+		$query = "UPDATE ts_factura
+		             SET proveedor='FM POWER MATERIALES ELECTRICOS, C.A. (FERMETAL)'
+		           WHERE id = 263";
+		mysql_query($query, $link);
+		
+		$query = "UPDATE ts_factura
+		             SET proveedor='INDUSTRIAS BELL POWER C.A'
+		           WHERE id = 266";
+		mysql_query($query, $link);
+		
+		$query = "UPDATE ts_factura
+		             SET proveedor='INDUSTRIAS BELL POWER C.A'
+		           WHERE id = 306";
+		mysql_query($query, $link);
+		
+		$query = "UPDATE ts_factura
+		             SET proveedor='CUREX C.A'
+		           WHERE id = 314";
+		mysql_query($query, $link);
+		
+		$query = "UPDATE ts_factura
+		             SET proveedor='MUNDO PAPEL 2001, C.A.'
+		           WHERE id = 319";
 		mysql_query($query, $link);
 		
 		$query = "UPDATE ts_envio
-		             SET id_destino=67 
-		           WHERE id = 533";
-		mysql_query($query, $link);
-		
-		$query = "UPDATE ts_cliente
-		             SET id_destino=67 
-		           WHERE id = 347";
-		mysql_query($query, $link);
-		
-		$query = "UPDATE ts_cliente
-		             SET id_destino=60 
-		           WHERE id = 351";
+		             SET id_factura=121
+		           WHERE id = 361";
 		mysql_query($query, $link);
 		
 		$action_result = "exitoModificarDatos";

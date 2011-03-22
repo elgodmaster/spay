@@ -677,7 +677,7 @@
 		              AND ind_envio < 3 
 		              AND ind_activo < 2"; 
 		$result = mysql_query($query, $link); 
-		if (mysql_num_rows($result) > 0) { return true; }
+		if ((mysql_num_rows($result) > 0) && $envio->factura!="0") { return true; }
 		
 		return false;
 	}

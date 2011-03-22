@@ -142,7 +142,7 @@
 								<?php echo str_pad($row->remesa, 6, "0", STR_PAD_LEFT); ?>
                     		</td>
                 			<td <?php if($inactiva) {?> style="color:#999;" <?php } ?> align="center"> 
-								<?php echo str_pad($row->factura, 6, "0", STR_PAD_LEFT); ?>
+								<?php echo substr(str_pad($row->factura, 6, "0", STR_PAD_LEFT),0,6); ?>
                     		</td>
                 			<td <?php if($inactiva) {?> style="color:#999;" <?php } ?>>
 								<?php echo substr(obtenerClienteStr($link, $row->id_cliente),0,35); ?>

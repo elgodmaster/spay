@@ -50,6 +50,9 @@
 			$banco = $_POST["txtBanco"];
 			$observaciones = strtoupper($_POST["txtObservaciones"]);
 			$action_result = facturaMarcarCobrada($link, $id, $forma_pago, $fecha_pago, $numero, $banco, $observaciones);
+			$_POST["cmbAnoI"] = NULL; 
+			$_POST["cmbMesI"] = NULL; 
+			$_POST["cmbDiaI"] = NULL;
 		}
 		
 		if($_POST["action"]=="Anular") {
@@ -109,13 +112,13 @@
                     		 	&nbsp;
 								<strong>FECHA</strong>
 								&nbsp;
-								<select name="cmbDiaI">
+								<select name="cmbDiaIm">
 									<option value=""></option>
 								<?php 
 									$i=1;
 									while ($i <= 31) {
 								?>	
-									<option value="<?php echo $i; ?>" <?php if($_REQUEST["cmbDiaI"]==$i) { ?> selected <?php } ?>>
+									<option value="<?php echo $i; ?>" <?php if($_REQUEST["cmbDiaIm"]==$i) { ?> selected <?php } ?>>
 									<?php echo $i; ?>
 									</option>
 								<?php 
@@ -123,13 +126,13 @@
 									}
 								?>	
 								</select>
-								<select name="cmbMesI">
+								<select name="cmbMesIm">
 									<option value=""></option>
 								<?php 
 									$i=1;
 									while ($i <= 12) {
 								?>	
-									<option value="<?php echo $i; ?>" <?php if($_REQUEST["cmbMesI"]==$i) { ?> selected <?php } ?>>
+									<option value="<?php echo $i; ?>" <?php if($_REQUEST["cmbMesIm"]==$i) { ?> selected <?php } ?>>
 									<?php echo $i; ?>
 									</option>
 								<?php 
@@ -137,13 +140,13 @@
 									}
 								?>	
 								</select>
-								<select name="cmbAnoI">
+								<select name="cmbAnoIm">
 									<option value=""></option>
 								<?php 
 									$i = date("Y");
 									while ($i >= date("Y")-10) {
 								?>	
-									<option value="<?php echo $i; ?>" <?php if($_REQUEST["cmbAnoI"]==$i) { ?> selected <?php } ?>>
+									<option value="<?php echo $i; ?>" <?php if($_REQUEST["cmbAnoIm"]==$i) { ?> selected <?php } ?>>
 									<?php echo $i; ?>
 									</option>
 								<?php 
@@ -200,7 +203,7 @@
 							$query .= " AND f.ind_factura=".$_REQUEST["cmbEstatusFactura"];
 						}		
 	
-						$fechaI = $_REQUEST["cmbAnoI"]."-".$_REQUEST["cmbMesI"]."-".$_REQUEST["cmbDiaI"];
+						$fechaI = $_REQUEST["cmbAnoIm"]."-".$_REQUEST["cmbMesIm"]."-".$_REQUEST["cmbDiaIm"];
 						
 						if($fechaI!="--") {
 							$query .= " AND f.fecha_creacion='".$fechaI."' "; 
