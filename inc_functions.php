@@ -820,7 +820,6 @@
 		$query = "UPDATE ts_envio  
 		             SET ind_envio=5,
 		                 motivo='".$motivo."',  
-		                 id_guia=NULL,
 			             fecha_modificacion=CURDATE(), 
 			             id_usuario=".$_SESSION["id_usuario"]."   
 			       WHERE id=".$id; 
