@@ -6,9 +6,6 @@
 	// Modificar Usuario
 	if ($_POST["action"]=="Actualizar") {
 		
-		$query = "ALTER TABLE ts_envio ADD devolucion INT(15)";
-		mysql_query($query, $link);
-		
 		$query = "INSERT INTO ts_config(parametro,
 		                                codigo,
 		                                valor,
@@ -16,9 +13,9 @@
 		                                fecha_creacion,
 		                                fecha_modificacion,
 		                                id_usuario) 
-		                         VALUES('SEQ_DEVOLUCION',
-		                                1,
-		                                7,
+		                         VALUES('IND_ENVIO',
+		                                6,
+		                                'CANCELADO',
 		                                1,
 		                                CURDATE(),
 		                                CURDATE(),

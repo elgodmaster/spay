@@ -5,15 +5,8 @@
 <?php 	
 	if ($_POST["action"]=="Corregir") {
 		
-		$query = "UPDATE ts_envio
-		             SET id_guia = 36 
-		           WHERE id = 302";
-		mysql_query($query, $link);
-		
-		$query = "UPDATE ts_envio
-		             SET id_guia = 36,
-		                 ind_envio = 3
-		           WHERE id = 471";
+		$query = "DELETE FROM ts_envio
+		           WHERE id = 762";
 		mysql_query($query, $link);
 		
 		$action_result = "exitoModificarDatos";

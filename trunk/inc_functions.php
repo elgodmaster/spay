@@ -146,6 +146,8 @@
 			break;
 			case 5: return "#F06";
 			break;
+			case 6: return "#000";
+			break;
 		}
 	}
 	
@@ -655,7 +657,8 @@
 			$query = "SELECT * 
 			            FROM ts_envio 
 			           WHERE remesa='".$envio->remesa."' 
-			             AND NOT(id_cliente=".$envio->id_cliente.") 
+			             AND NOT(id_cliente=".$envio->id_cliente.")  
+		                 AND ind_envio < 3 
 			             AND ind_activo < 2";  
 			$result = mysql_query($query, $link);
 			if (mysql_num_rows($result) > 0) { return true; }
@@ -868,15 +871,15 @@
 		return "exitoEliminarEnvio";
 	}	
 	
-	function liberarEnvio($link, $id) {
+	function cancelarEnvio($link, $id) {
 	
 		$query = "UPDATE ts_envio 
-		             SET id_guia=NULL,
-		                 ind_envio=1  
+		             SET ind_envio=6  
 		           WHERE id=".$id;
 		mysql_query($query, $link);
-		return "exitoLiberarEnvio";
+		return "exitoCancelarEnvio";
 	}
+	
 			
 	
 	// *********************************************************************************
