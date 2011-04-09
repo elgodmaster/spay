@@ -96,7 +96,7 @@
 						             AND e.id_proveedor = p.id 
 						             AND e.id_cliente = c.id 
 						             AND e.id_destino = d.id 
-						             AND e.ind_envio > 2 
+						             AND e.ind_envio IN (3,4,5)  
 						             AND e.id_factura IS NULL 
 						             AND e.tipo_envio = 'N'"; 
 

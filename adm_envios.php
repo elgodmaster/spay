@@ -37,6 +37,10 @@
 			$id = $_GET["id"];
 			$action_result = eliminarEnvio($link,$id);
 		}	
+		if($_GET["action"]=="Cancelar") {
+			$id = $_GET["id"];
+			$action_result = cancelarEnvio($link,$id);
+		}	
 		
 	}
 	
@@ -226,13 +230,21 @@
                                 <a href="adm_consultar_envio.php?id=<?php echo $row->id; ?>&<?php echo $variables; ?>" title="Consultar">
                                 	<img src="images/icons/zoom.png" align="texttop" border="0" />
                            		</a>
-                           		<?php if($row->ind_envio==1 || $row->ind_envio>3) { ?>
+                           		<?php if($row->ind_envio <= 3) { ?>
                             	<a href="adm_envios.php?action=Modificar&id=<?php echo $row->id; ?>&&<?php echo $variables; ?>" title="Modificar">
                                 	<img align="texttop" src="images/icons/pencil.png" border="0" />
                                	</a>
+                           		<?php } ?>
+                           		<?php if($row->ind_envio==1) { ?>
                                 <a href="adm_envios.php?action=Eliminar&id=<?php echo $row->id; ?>&<?php echo $variables; ?>" title="Eliminar">
                                 	<img src="images/icons/cross.png" align="texttop" border="0" 
                                      onclick="javascript:return confirm('Esta seguro que desea eliminar?');" />
+                           		</a>
+                           		<?php } ?>
+                           		<?php if($row->ind_envio >= 3 && $row->ind_envio!=6) { ?>
+                                <a href="adm_envios.php?action=Cancelar&id=<?php echo $row->id; ?>&<?php echo $variables; ?>" title="Cancelar">
+                                	<img src="images/icons/cancel.png" align="texttop" border="0" 
+                                     onclick="javascript:return confirm('Esta seguro que desea cancelar este envio?');" />
                            		</a>
                            		<?php } ?>
                            		<?php if($row->tipo_envio=="N") { ?>
