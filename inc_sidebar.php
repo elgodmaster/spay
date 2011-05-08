@@ -56,29 +56,17 @@
 				<a href="reportes.php"><h1>Reportes</h1></a>				
 				<ul class="sidemenu">
                     <li>
-                    	<a href="adm_reporte_proveedores.php">
+                    	<a href="adm_reporte_envios.php">
                         	<img align="texttop" src="images/icons/chart_bar.png" border="0" />
-                        	Reporte por Proveedores
+                        	Reporte Env&iacute;os
                        	</a>
                    	</li>
                     <li>
-                    	<a href="adm_reporte_clientes.php">
+                    	<a href="adm_reporte_facturas.php">
                         	<img align="texttop" src="images/icons/chart_bar.png" border="0" />
-                            Reporte por Clientes
+                        	Reporte Facturas
                        	</a>
-                  	</li>
-                    <li>
-                    	<a href="adm_reporte_destinos.php">
-                        	<img align="texttop" src="images/icons/chart_bar.png" border="0" />
-                            Reporte por Destinos
-                       	</a>
-                  	</li>
-                    <li>
-                    	<a href="adm_reporte_choferes.php">
-                        	<img align="texttop" src="images/icons/chart_bar.png" border="0" />
-                            Reporte por Choferes
-                       	</a>
-                  	</li>
+                   	</li>
 				</ul>
 				
 				<a href="configuracion.php"><h1>Configuraci&oacute;n</h1></a>				

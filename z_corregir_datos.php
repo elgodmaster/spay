@@ -5,9 +5,15 @@
 <?php 	
 	if ($_POST["action"]=="Corregir") {
 		
-		$query = "DELETE FROM ts_envio
-		           WHERE id = 762";
+		$query = "UPDATE ts_envio
+					 SET id_proveedor = 7
+		           WHERE id = 1393";
 		mysql_query($query, $link);
+		
+		$query = "UPDATE ts_envio
+					 SET id_factura = 514
+		           WHERE id = 1634";
+		mysql_query($query, $link);		
 		
 		$action_result = "exitoModificarDatos";
 	}

@@ -2,21 +2,12 @@
 <?php include("inc_seguridad.php"); ?>
 <?php include("inc_conectarse.php"); ?>
 <?php $_SESSION["modulo"] = "facturas"; ?>
-<?php include("inc_functions.php"); ?>	
+<?php include("inc_functions.php"); ?>		
 <?php 
-
-	if ($_POST["action"]!="" || $_GET["action"]!="") {
-	
-		if ($_POST["action"]=="Generar") {
-			$guia->envios = $_POST["chkEnvio"];
-			$guia->id_chofer = $_POST["cmbChofer"];
-			$action_result = generarGuiaTemporal($link, $guia);
-
-			//$guia = obtenerGuiaChofer($link, $guia->id_chofer);
-			$guia_tmp = "adm_guia_de_entrega.php?id=".$_SESSION["id_guia_tmp"];			
-		}
+	if($_GET["limpiar"]=="yes") {
+		$_SESSION["cmbProveedor"]="";
 	}
-?>	
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <?php include("inc_metadata.php"); ?>
@@ -42,15 +33,16 @@
 					  method="post" enctype="multipart/form-data"   
                 	  onSubmit="return validate_busqueda_proveedor_form(this);"  
                       style="background-color:#FFF; border:none;	margin:0px; padding-left:10px">                 		  	
-                     	<?php if($_POST["action"]=="Buscar") { ?>
+                     	<?php if($_POST["action"]=="Buscar" || $_SESSION["cmbProveedor"]!="") { ?>
                      	<input type="button" class="button" value="LIMPIAR BUSQUEDA" 
-                     	 onclick="javascript:document.location.href = 'adm_factura_proveedor.php';" />
+                     	 onclick="javascript:document.location.href = 'adm_factura_proveedor.php?limpiar=yes';" />
                      	<?php } else { ?>
                      	<strong>PROVEEDOR</strong>&nbsp;
                      	<select name="cmbProveedor">
                      		<option value=""></option>
                      		<?php 
-                     			$proveedores = obtenerProveedores($link);
+                     		
+                     			$proveedores = obtenerProveedoresPendienteFactura($link);
                      			while($row = obtenerRegistro($proveedores)) {
                      		?>
                      		<option value="<?php echo $row->id; ?>">
@@ -102,9 +94,15 @@
 
 						if($_POST["cmbProveedor"]!="") {
 							$query .= " AND e.id_proveedor=".$_POST["cmbProveedor"];
-						}		
+							$_SESSION["cmbProveedor"] = $_POST["cmbProveedor"];  
+						}
 
-						$query .= " ORDER BY e.fecha_creacion, e.ind_envio DESC ";	
+						if($_SESSION["cmbProveedor"]!="") {
+							$query .= " AND e.id_proveedor=".$_SESSION["cmbProveedor"];
+						}
+								
+
+						$query .= " ORDER BY e.factura, e.ind_envio DESC ";	
 						
 						$result = obtenerResultset($link,$query);
 					

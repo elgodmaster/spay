@@ -52,6 +52,132 @@ function cargarEstados(frmSP, id_estado) {
 		frmSP.cmbEstado.disabled=true;
 	}
 };
+
+//************************************************
+//CARGAR_LISTA_ESTADOS
+//************************************************
+function cargarEstados2(frmSP, id_estado) {
+
+	<?php
+	$query = "SELECT * FROM ts_region WHERE ind_activo = 1";
+	$result = mysql_query($query,$link);
+
+	while($row1=mysql_fetch_object($result)) {
+	?>
+		if (frmSP.cmbRegion.value==<?php echo $row1->id; ?>) {
+			frmSP.cmbEstado.options.length=0;
+			<?php
+			$query = "SELECT * FROM ts_estado WHERE id_region='".$row1->id."' AND ind_activo=1 ORDER BY nombre";
+			$result2 = mysql_query($query,$link);
+			
+			$i=1;
+			if(mysql_num_rows($result2)>0) {
+			?>	
+				frmSP.cmbEstado.disabled=false;
+				frmSP.cmbEstado.options[0] = new Option("SELECCIONE...","",false,true);
+			<?php
+			}
+			else {
+			?>
+				frmSP.cmbEstado.disabled=true;
+				frmSP.cmbDestino.disabled=true;
+			<?php
+			}
+			while($row2=mysql_fetch_object($result2)) {
+			?>
+			if(<?php echo $row2->id;?>==id_estado) {
+				frmSP.cmbEstado.options[<?php echo $i;?>] = 
+				   new Option("<?php echo $row2->nombre;?>","<?php echo $row2->id;?>",false,"selected");
+			}
+			else {
+				frmSP.cmbEstado.options[<?php echo $i;?>] = 
+					   new Option("<?php echo $row2->nombre;?>","<?php echo $row2->id;?>",false,false);
+			}
+			<?php 
+				$i++;
+			}
+			?>							         	
+		}
+	<?php
+	}
+	mysql_free_result($result2);
+	?>
+	if(frmSP.cmbRegion.value=="") {
+		frmSP.cmbEstado.options.length=0;
+		frmSP.cmbEstado.disabled=true;
+		frmSP.cmbDestino.options.length=0;
+		frmSP.cmbDestino.disabled=true;
+	}
+};
+
+//************************************************
+//CARGAR_LISTA_DESTINOS
+//************************************************
+function cargarDestinos(frmSP, id_destino) {
+
+	<?php
+	$query = "SELECT * FROM ts_region WHERE ind_activo = 1";
+	$result = mysql_query($query,$link);
+
+	while($row1=mysql_fetch_object($result)) {
+	?>
+		if (frmSP.cmbRegion.value==<?php echo $row1->id; ?>) {
+			<?php
+					$query = "SELECT * FROM ts_estado WHERE id_region='".$row1->id."' AND ind_activo=1 ORDER BY nombre";
+					$result2 = mysql_query($query,$link);
+					
+					while ($row2=mysql_fetch_object($result2)) { 
+			?>		
+						if (frmSP.cmbEstado.value==<?php echo $row2->id; ?>) {
+							frmSP.cmbDestino.options.length=0;	
+						<?php		
+							$i=1;
+							$query = "SELECT * FROM ts_destino WHERE id_estado='".$row2->id."' AND ind_activo=1 ORDER BY nombre";
+							$result3 = mysql_query($query,$link);
+							if(mysql_num_rows($result3)>0) {
+							?>	
+								frmSP.cmbDestino.disabled=false;
+								frmSP.cmbDestino.options[0] = new Option("SELECCIONE...","",false,true);
+							<?php
+							}
+							else {
+							?>
+								frmSP.cmbDestino.disabled=true;
+							<?php
+							}
+							while($row3=mysql_fetch_object($result3)) {
+							?>
+							if(<?php echo $row3->id;?>==id_destino) {
+								frmSP.cmbDestino.options[<?php echo $i;?>] = 
+								   new Option("<?php echo $row3->nombre;?>","<?php echo $row3->id;?>",false,"selected");
+							}
+							else {
+								frmSP.cmbDestino.options[<?php echo $i;?>] = 
+									   new Option("<?php echo $row3->nombre;?>","<?php echo $row3->id;?>",false,false);
+							}
+							<?php 
+								$i++;
+							}
+							?>	
+						}
+			<?php 
+					}
+			?>							         	
+		}
+	<?php
+	}
+	mysql_free_result($result2);
+	mysql_free_result($result3);
+	?>
+	if(frmSP.cmbRegion.value=="") {
+		frmSP.cmbEstado.options.length=0;
+		frmSP.cmbEstado.disabled=true;
+	}
+	if(frmSP.cmbEstado.value=="") {
+		frmSP.cmbDestino.options.length=0;
+		frmSP.cmbDestino.disabled=true;
+	}
+}
 // ************************************************
 
 function cargarFlete(frmSP) {

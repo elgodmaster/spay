@@ -172,13 +172,25 @@
                         		<strong>TOTAL Bs.</strong>
                             </td>
                         	<td align="right">
-                        		<strong><?php echo  number_format($guia->total_mercancia,2,",","."); ?></strong>
+                        		<strong>
+                        		<?php 
+									if(!$_GET["valor"]=="no") {
+                        				echo  number_format($guia->total_mercancia,2,",",".");
+									} 
+                        		?>
+                        		</strong>
                             </td>
                         	<td align="right">
                         		<strong>&nbsp;</strong>
                             </td>
                         	<td align="right">
-                        		<strong><?php echo  number_format($guia->total_flete,2,",","."); ?></strong>
+                        		<strong>
+                        		<?php 
+									if(!$_GET["flete"]=="no") {
+										echo  number_format($guia->total_flete,2,",","."); 
+									}
+								?>
+								</strong>
                             </td>
                         </tr>
             			<tr>
