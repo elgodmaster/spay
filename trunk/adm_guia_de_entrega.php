@@ -27,6 +27,22 @@
                 	<img src="images/icons/printer.png" align="texttop" border="0" />
                     <strong>Versi&oacute;n Imprimible</strong>
               	</a>
+              	<br/>
+				<a href="adm_guia_de_entrega_imp.php?id=<?php echo $guia->id; ?>&flete=no&valor=no" target="_blank">
+                	<img src="images/icons/printer.png" align="texttop" border="0" />
+                    <strong>Versi&oacute;n Imprimible (Sin Total Mercancia ni Flete)</strong>
+              	</a>
+              	<br/>
+				<a href="adm_guia_de_entrega_imp.php?id=<?php echo $guia->id; ?>&valor=no" target="_blank">
+                	<img src="images/icons/printer.png" align="texttop" border="0" />
+                    <strong>Versi&oacute;n Imprimible (Sin Total Mercancia)</strong>
+              	</a>
+              	<br/>
+				<a href="adm_guia_de_entrega_imp.php?id=<?php echo $guia->id; ?>&flete=no" target="_blank">
+                	<img src="images/icons/printer.png" align="texttop" border="0" />
+                    <strong>Versi&oacute;n Imprimible (Sin Total Flete)</strong>
+              	</a>
+              	
 				</div>
 				
                     <table width="840px">
@@ -86,7 +102,7 @@
                 			<td width="60" align="center"><strong>REMESA</strong></td>
                 			<td width="70" align="center"><strong>FACTURA</strong></td>
                 			<td width="380"><strong>CLIENTE</strong></td>
-                			<td width="110"><strong>DESTINO</strong></td>
+                			<td width="115"><strong>DESTINO</strong></td>
                 			<td width="90"><strong>PAGADERO</strong></td>
                     		<td width="70" align="right"><strong>MERCANCIA</strong></td>
                     		<td width="50" align="center"><strong>%</strong></td>
@@ -125,7 +141,7 @@
 	 							if($row->tipo_cobro=="P") {
 	 								$valor = $row->peso*$row->bskg;
 	 							}
-	 							if($row->tipo_cobro=="M") {
+	 							if($row->tipo_cobro=="M") {	
 	 								$valor = $row->viaje;
 	 							}
 	                    	?>
@@ -139,13 +155,13 @@
 								<?php echo str_pad($row->remesa, 6, "0", STR_PAD_LEFT); ?>
                     		</td>
                 			<td <?php if($inactiva) {?> style="color:#999;" <?php } ?> align="center"> 
-								<?php echo str_pad($row->factura, 6, "0", STR_PAD_LEFT); ?>
+								<?php echo substr(str_pad($row->factura, 6, "0", STR_PAD_LEFT),0,6); ?>
                     		</td>
                 			<td <?php if($inactiva) {?> style="color:#999;" <?php } ?>>
 								<?php echo substr(obtenerClienteStr($link, $row->id_cliente),0,33); ?>
                     		</td> 
                 			<td <?php if($inactiva) {?> style="color:#999;" <?php } ?>>
-								<?php echo obtenerDestinoStr($link, $row->id_destino); ?>
+								<?php echo substr(obtenerDestinoStr($link, $row->id_destino),0,10); ?>
                     		</td>    
                 			<td <?php if($inactiva) {?> style="color:#999;" <?php } ?>>
 								<?php echo pagadero($row->tipo_envio); ?>

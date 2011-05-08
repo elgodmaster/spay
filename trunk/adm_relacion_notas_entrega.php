@@ -197,7 +197,7 @@
 						             AND e.id_destino = d.id 
 						             AND e.id_factura=".$factura->id."   
 						             AND e.tipo_cobro='P'  
-						        ORDER BY e.fecha_creacion";	
+						        ORDER BY e.factura";	
 						$result = obtenerResultset($link,$query);
 						
 						if(mysql_num_rows($result)>0) {
@@ -295,7 +295,7 @@
 						             AND e.id_destino = d.id 
 						             AND e.id_factura=".$factura->id."   
 						             AND e.tipo_cobro='M'  
-						        ORDER BY e.fecha_creacion";	
+						        ORDER BY e.factura";	
 						$result = obtenerResultset($link,$query);
 						
 						if(mysql_num_rows($result)>0) {

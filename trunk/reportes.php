@@ -18,43 +18,23 @@
 				<h1>Reportes</h1>
                 <p>
                 	<strong>
-                    	<a href="adm_reporte_proveedores.php">
+                    	<a href="adm_reporte_envios.php">
                         	<img align="texttop" src="images/icons/chart_bar.png" border="0" /> 
-                            Reporte por Proveedores
+                            Reporte Env&iacute;os
                        	</a>
                    	</strong>
                     <br />
-                    Reportes estad&iacute;sticos de env&iacute;os por Proveedor.
+                    Reportes estad&iacute;sticos de Env&iacute;os.
                 </p>	
                 <p>
                 	<strong>
-                    	<a href="adm_reporte_clientes.php">
+                    	<a href="adm_reporte_facturas.php">
                         	<img align="texttop" src="images/icons/chart_bar.png" border="0" /> 
-                            Reporte por Clientes
+                            Reporte Facturas
                        	</a>
                    	</strong>
                     <br />
-                    Reportes estad&iacute;sticos de env&iacute;os por Cliente.
-                </p>
-                <p>
-                	<strong>
-                    	<a href="adm_reporte_destinos.php">
-                        	<img align="texttop" src="images/icons/chart_bar.png" border="0" /> 
-                            Reporte por Destinos
-                       	</a>
-                   	</strong>
-                    <br />
-                    Reportes estad&iacute;sticos de env&iacute;os por Destino.
-                </p>
-                <p>
-                	<strong>
-                    	<a href="adm_reporte_choferes.php">
-                        	<img align="texttop" src="images/icons/chart_bar.png" border="0" /> 
-                            Reporte por Choferes
-                       	</a>
-                   	</strong>
-                    <br />
-                    Reportes estad&iacute;sticos de env&iacute;os por Chofer.
+                    Reportes de Facturas Cobradas.
                 </p>			
                  							
 	  		</div> 	

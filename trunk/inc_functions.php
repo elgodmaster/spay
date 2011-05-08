@@ -380,8 +380,28 @@
 		           WHERE ind_activo = 1 
 		        ORDER BY nombre";
 		return mysql_query($query,$link);
+	}
+		
+	function obtenerProveedoresPendienteFactura($link) {
+		$query = "SELECT DISTINCT p.id, p.nombre  
+		            FROM ts_envio e,
+		                 ts_proveedor p, ts_cliente c,
+		                 ts_destino d 
+		           WHERE e.ind_activo < 2
+		             AND e.id_proveedor = p.id 
+		             AND e.id_cliente = c.id 
+		             AND e.id_destino = d.id 
+		             AND e.ind_envio IN (3,4,5)  
+		             AND e.id_factura IS NULL 
+		             AND e.tipo_envio = 'N' 
+		    	ORDER BY nombre";
+		return mysql_query($query,$link);
 	}	
 	
+	
+	
+	
+
 	function obtenerProveedorStr($link,$id) {
 		$query = "SELECT * from ts_proveedor WHERE id=".$id;
 		$result = mysql_query($query,$link);
