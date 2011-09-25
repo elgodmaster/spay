@@ -53,6 +53,7 @@
                  	</li>
       		    </ul>
 				
+				<?php if($_SESSION["ind_admin"]==1) { ?>
 				<a href="reportes.php"><h1>Reportes</h1></a>				
 				<ul class="sidemenu">
                     <li>
@@ -68,7 +69,7 @@
                        	</a>
                    	</li>
 				</ul>
-				
+				<?php } ?>
 				<a href="configuracion.php"><h1>Configuraci&oacute;n</h1></a>				
 				<ul class="sidemenu">
                 	<li>

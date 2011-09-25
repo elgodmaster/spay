@@ -233,12 +233,44 @@
                     <strong style="padding-right:5px;">ESTATUS</strong>
                     <span style="color:<?php echo colorIndGuia($guia->ind_guia); ?>; font-weight:bold">
 					<?php echo indGuiaStr($guia->ind_guia); ?>
-                    </span>                        	
+                    </span>  
+                    </td>
+                      </tr>    
+                        <tr>
+                        	<td colspan="11"><hr /></td>
+                        </tr>  
+                    <?php if($guia->ind_pagada) { ?>
+                        <tr>
+                        	<td colspan="11">&nbsp;</td>
+                        </tr> 
+                        <tr>
+                        	<td colspan="11"><hr /></td>
+                        </tr>  
+                        <tr>
+                        	<td colspan="11">
+                    <strong style="padding-right:5px;"  class="orange">PAGO A CHOFER</strong>
+                    <br />
+                    <strong>FECHA:</strong>&nbsp;<?php echo mostrarFecha($guia->fecha_pago); ?>
+                    &nbsp;
+                    <strong>FORMA DE PAGO:</strong>&nbsp;<?php echo $guia->forma_pago; ?>
+                    &nbsp;
+                    <?php if($guia->forma_pago=="CHEQUE") { ?>
+                    <strong>N&deg;:</strong>&nbsp;<?php echo $guia->numero_pago; ?>
+                    &nbsp;
+                    <strong>BANCO:</strong>&nbsp;<?php echo $guia->banco_pago; ?>
+                    &nbsp;
+                    <?php } ?>
+                    <strong>FLETE:</strong>&nbsp;<?php echo $guia->flete_pago; ?>%
+                    <br />
+                    <strong>OBSERVACIONES:</strong>&nbsp;<?php echo $guia->observaciones_pago; ?>
+                    &nbsp;             	
                         	</td>
                         </tr>   
                         <tr>
                         	<td colspan="11"><hr /></td>
-                        </tr>                                                                                                
+                        </tr>    
+                    
+                    <?php } ?>                                                                                             
           			</table>
                                                   			
 				</div>

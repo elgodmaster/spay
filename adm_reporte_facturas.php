@@ -35,15 +35,7 @@
                     		<td colspan="6">
                     		<form name="frmEnvio" action="adm_reporte_facturas.php" method="post" 
                     		 enctype="multipart/form-data" onSubmit="return validate_busqueda_factura_form(this);">                  		 
-                    		 	&nbsp;<strong>ESTATUS</strong>&nbsp;
-                    		 	<select name="cmbEstatusFactura">
-                    		 		<option value=""></option>
-                    		 		<option value=1 <?php if($_REQUEST["cmbEstatusFactura"]==1) {?> selected <?php } ?>>POR COBRAR</option>
-                    		 		<option value=2 <?php if($_REQUEST["cmbEstatusFactura"]==2) {?> selected <?php } ?>>COBRADA</option>
-                    		 		<option value=3 <?php if($_REQUEST["cmbEstatusFactura"]==3) {?> selected <?php } ?>>ANULADA</option>
-                    		 	</select>
-                    		 	&nbsp;
-								<strong>FECHA INICIO</strong>
+								&nbsp;<strong>FECHA INICIO</strong>
 								&nbsp;
 								<select name="cmbDiaIm">
 									<option value=""></option>
@@ -132,9 +124,51 @@
 									}
 								?>	
 								</select>  
-								&nbsp;                  		 	
+								<br /><br /> 
+                    		 	&nbsp;<strong>PROVEEDOR</strong>&nbsp;
+                    		 	<select name="cmbProveedor">
+			                    <option value="">SELECCIONE...</option>
+			                    <?php 
+									$result = obtenerProveedores($link);
+									while($row=mysql_fetch_object($result)) {
+								?>		
+									<option value="<?php echo($row->id); ?>" 
+									 <?php if($_REQUEST["cmbProveedor"]==$row->id) { ?> selected <?php } ?>>
+									 <?php echo($row->nombre); ?>
+			                       	</option>	
+			                    <?php
+									}
+								?>
+                    		 	</select>
+								<br />  
+								<br />    
+                    		 	&nbsp;<strong>CLIENTE</strong>&nbsp;
+                    		 	<select name="cmbCliente">
+			                    <option value="">SELECCIONE...</option>
+			                    <?php 
+									$result = obtenerClientes($link);
+									while($row=mysql_fetch_object($result)) {
+								?>		
+									<option value="<?php echo($row->id); ?>" 
+									 <?php if($_REQUEST["cmbCliente"]==$row->id) { ?> selected <?php } ?>>
+									 <?php echo($row->nombre); ?>
+			                       	</option>	
+			                    <?php
+									}
+								?>
+                    		 	</select>
+								<br />       
+								<br />  
+								&nbsp;<strong>ESTATUS</strong>&nbsp;
+                    		 	<select name="cmbEstatusFactura">
+                    		 		<option value=""></option>
+                    		 		<option value=1 <?php if($_REQUEST["cmbEstatusFactura"]==1) {?> selected <?php } ?>>POR COBRAR</option>
+                    		 		<option value=2 <?php if($_REQUEST["cmbEstatusFactura"]==2) {?> selected <?php } ?>>COBRADA</option>
+                    		 		<option value=3 <?php if($_REQUEST["cmbEstatusFactura"]==3) {?> selected <?php } ?>>ANULADA</option>
+                    		 	</select>
+								<br /><br />                 		 	
                     		  	<input name="action" type="hidden" value="Buscar" />
-                    		 	<input type="submit" class="button" value="BUSCAR" />
+                    		 	<input type="submit" class="button" value="GENERAR REPORTE" />
                     		</form>
                     		</td>
                 		</tr>
@@ -181,6 +215,12 @@
 						
 						if($fechaI!="--") {
 							$query .= " AND f.fecha_modificacion between '".$fechaI."' and '".$fechaF."' "; 
+						}
+						if($_REQUEST["cmbProveedor"]!="") {
+							$query .= " AND f.id_proveedor=".$_REQUEST["cmbProveedor"]; 
+						}
+						if($_REQUEST["cmbCliente"]!="") {
+							$query .= " AND f.id_cliente=".$_REQUEST["cmbCliente"]; 
 						}
 							
 						$query .= " ORDER BY f.fecha_modificacion DESC, id DESC ";	

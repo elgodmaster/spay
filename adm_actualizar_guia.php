@@ -1,7 +1,7 @@
 <?php include("inc_session.php"); ?>
 <?php include("inc_seguridad.php"); ?>
 <?php include("inc_conectarse.php"); ?>
-<?php $_SESSION["modulo"] = "facturas"; ?>
+<?php $_SESSION["modulo"] = "guias"; ?>
 <?php include("inc_functions.php"); ?>	
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
@@ -16,12 +16,11 @@
 			<?php include("inc_sidebar.php"); ?>	
 	  		<div id="main"> 
 				
-				<h1>Actualizar Factura</h1>
+				<h1>Registrar Pago a Chofer</h1>
                 <p>
                 <?php include("inc_mensajes_crud.php"); ?>
-                </p>          
-                <?php if($_GET["action"]=="MarcarCobrada") { ?>    			
-				<form name="frmSP" action="adm_facturas.php?id=<?php echo $_GET["id"]; ?>" 
+                </p>             			
+				<form name="frmSP" action="adm_guias.php?id=<?php echo $_GET["id"]; ?>" 
 				 method="post" enctype="multipart/form-data" 
                  onsubmit="return validate_factura_cobrada_form(this);">	
                     <p>
@@ -32,9 +31,6 @@
                 		<option value="">SELECCIONE...</option>
                 		<option value="EFECTIVO">EFECTIVO</option>	
                 		<option value="CHEQUE">CHEQUE</option>
-                		<option value="TARJETA DE CREDITO">TARJETA DE CREDITO</option>
-                		<option value="TARJETA DE DEBITO">TARJETA DE DEBITO</option>
-                		<option value="TRANSFERENCIA ELECTRONICA">TRANSFERENCIA ELECTRONICA</option>
                 	</select> 
                 	&nbsp;
 					<strong>PAGADO EN FECHA</strong>
@@ -80,7 +76,11 @@
 							$i--;
 						}
 					?>	
-					</select>                             
+					</select>  
+					&nbsp;
+					<strong style="padding-right:5px">FLETE</strong>
+					<input name="txtFlete" type="text" size="1"  style="text-align:right" />
+					<strong>%</strong>                             
                     <br />                             
                     <br />        
                 	<strong style="padding-right:5px">N&deg;</strong>               	
@@ -101,24 +101,7 @@
                     <input class="button" value="ENVIAR" type="submit" />
                     <input class="button" value="CANCELAR" type="reset"  onClick="window.location='adm_actualizar_envio.php';" />	
 					</p>			
-				</form>
-				<?php } ?>
-                <?php if($_GET["action"]=="Anular") { ?>    			
-				<form name="anular" action="adm_facturas.php?id=<?php echo $_GET["id"]; ?>" 
-				 method="post" enctype="multipart/form-data" 
-                 onSubmit="return validate_factura_anulada_form(anular);">	
-                    <p>
-                	<?php include("inc_mensajes.php"); ?>
-                	<label>MOTIVO DE ANULACION</label>
-					<input name="txtMotivo" type="text" size="80"  style="text-transform:uppercase" />                                                   
-                    <p> 
-                   	<input name="action" type="hidden" value="<?php echo $_GET["action"]; ?>" />  
-                    <input name="id" type="hidden" value="<?php echo $_GET["id"]; ?>" />                 
-                    <input class="button" value="ENVIAR" type="submit" />
-                    <input class="button" value="CANCELAR" type="reset" />	
-					</p>			
-				</form>
-				<?php } ?>				
+				</form>		
                 <br />                             
                 								
 	  		</div> 	

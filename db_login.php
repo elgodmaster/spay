@@ -25,6 +25,7 @@
 		// Usuario Validado Exitosamente
 		$_SESSION["login"] = $login;
 		$_SESSION["nombre"] = $row->nombre;
+		$_SESSION["ind_admin"] = $row->ind_admin;
 		$_SESSION["id_usuario"] = $row->id;
 		$_SESSION["id_empresa"] = $row->id_empresa;
 		
