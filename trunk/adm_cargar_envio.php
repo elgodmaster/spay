@@ -28,6 +28,7 @@
 			$envio->id_destino = $_POST["cmbDestino"];
 			$envio->bultos = $_POST["txtBultos"];
 			$envio->observaciones = strtoupper($_POST["txtObservaciones"]);
+			$envio->nota_entrega = strtoupper($_POST["txtNotaEntrega"]);
 			if($_POST["remesa"]!="") {
 				$envio->remesa = $_POST["remesa"];
 			}
@@ -215,8 +216,20 @@
 	                    <br /><br />
                     	<strong style="padding-right:5px">OBSERVACIONES</strong>
 						<input name="txtObservaciones" type="text" size="82" style="text-transform:uppercase;" /> 
+                    </p>                
+                    <br /><br />
+                    <hr />
+                    <p>
+                    <strong class="orange">NOTA DE ENTREGA</strong>
+                    </p>		
+                    <hr />		
+ 					<p>											
+                    <strong style="padding-right:5px">OBSERVACIONES</strong>
+                    <br/>
+					<input name="txtNotaEntrega" type="text" size="125" style="text-transform:uppercase" 
+                     value="<?php echo $envio->nota_entrega; ?>" />     	
+                    <br /><br />	
                     </p>
-                    <br />
                     <hr />   
                     <p>
                     <strong style="padding-right:5px">&iquest;DESEA AGREGAR OTRO ENVIO A ESTA NOTA DE ENTREGA / FACTURA ?</strong>

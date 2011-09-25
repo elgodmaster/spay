@@ -5,6 +5,7 @@
 <?php include("inc_functions.php"); ?>	
 <?php 
 	$envio = obtenerEnvio($link,$_GET["id"]);
+    $observaciones = $envio->nota_entrega;
 	$tipo_cobro = $envio->tipo_cobro;
 	$id_cliente = $envio->id_cliente;
 	$remesa = $envio->remesa;
@@ -200,10 +201,23 @@
                             </td>
                         </tr>
                         <tr>
-                        <td width="300px">&nbsp;</td>
-                        <td width="100px">&nbsp;</td>
-                        <td width="450px">&nbsp;</td>
-                        </tr> 
+                        	<td width="300px">&nbsp;</td>
+                        	<td width="100px">&nbsp;</td>
+                        	<td width="450px">&nbsp;</td>
+                        </tr>
+                        <tr>
+                        	<td colspan="3">
+                        	<?php if ($observaciones!="") { ?>
+                        	<strong>OBSERVACIONES:</strong><br/>
+                        	<?php echo $observaciones; ?>
+                        	<?php } ?>
+                        	</td>
+                        </tr>
+                        <tr>
+                        	<td width="300px">&nbsp;</td>
+                        	<td width="100px">&nbsp;</td>
+                        	<td width="450px">&nbsp;</td>
+                        </tr>
                         <tr>
                         <td colspan=3 style="font-size:16px; font-weight:bold">
                             </td>
@@ -433,10 +447,23 @@
                             </td>
                         </tr>
                         <tr>
-                        <td width="300px">&nbsp;</td>
-                        <td width="100px">&nbsp;</td>
-                        <td width="450px">&nbsp;</td>
-                        </tr> 
+                        	<td width="300px">&nbsp;</td>
+                        	<td width="100px">&nbsp;</td>
+                        	<td width="450px">&nbsp;</td>
+                        </tr>
+                        <tr>
+                        	<td colspan="3">
+                        	<?php if ($observaciones!="") { ?>
+                        	<strong>OBSERVACIONES:</strong><br/>
+                        	<?php echo $observaciones; ?>
+                        	<?php } ?>
+                        	</td>
+                        </tr>
+                        <tr>
+                        	<td width="300px">&nbsp;</td>
+                        	<td width="100px">&nbsp;</td>
+                        	<td width="450px">&nbsp;</td>
+                        </tr>
                         <tr>
                         <td colspan=3 style="font-size:16px; font-weight:bold">
                             </td>

@@ -5,6 +5,7 @@
 <?php include("inc_functions.php"); ?>	
 <?php 
 	$envio = obtenerEnvio($link,$_GET["id"]);
+    $observaciones = $envio->nota_entrega;
 	$tipo_cobro = $envio->tipo_cobro;
 	$id_cliente = $envio->id_cliente;
 	$query = "SELECT * 
@@ -218,6 +219,19 @@
                         	<td align="center" style="font-size:14px; font-weight:bold">
                             POR <?php echo obtenerClienteStr($link, $id_cliente); ?>
                             </td>
+                        </tr>
+                        <tr>
+                        	<td width="300px">&nbsp;</td>
+                        	<td width="100px">&nbsp;</td>
+                        	<td width="450px">&nbsp;</td>
+                        </tr>
+                        <tr>
+                        	<td colspan="3">
+                        	<?php if ($observaciones!="") { ?>
+                        	<strong>OBSERVACIONES:</strong><br/>
+                        	<?php echo $observaciones; ?>
+                        	<?php } ?>
+                        	</td>
                         </tr>
                         <tr>
                         	<td width="300px">&nbsp;</td>

@@ -25,11 +25,25 @@
 		if($_GET["action"]=="Eliminar") {
 			$id = $_GET["id"];
 			$action_result = eliminarGuia($link,$id);
-		}	
+		}			
+		
+		if($_POST["action"]=="RegistrarPagoChofer") {
+			$pago->id = $_GET["id"];
+			$pago->forma_pago = $_POST["cmbFormaPago"];
+			$pago->fecha_pago = $_POST["cmbAnoI"]."-".$_POST["cmbMesI"]."-".$_POST["cmbDiaI"];
+			$pago->numero = $_POST["txtNumero"];
+			$pago->banco = $_POST["txtBanco"];
+			$pago->observaciones = strtoupper($_POST["txtObservaciones"]);
+			$pago->flete = $_POST["txtFlete"];
+			$action_result = registrarPagoChofer($link, $pago);
+			$_REQUEST["cmbAnoI"] = NULL; 
+			$_REQUEST["cmbMesI"] = NULL; 
+			$_REQUEST["cmbDiaI"] = NULL;
+		}
 		
 	}
 	
-	$variables = "page=".$_GET["page"]."&cmbEstatusGuia=".$_REQUEST["cmbEstatusGuia"]."&cmbAnoI=".$_REQUEST["cmbAnoI"]."&cmbMesI=".$_REQUEST["cmbMesI"]."&cmbDiaI=".$_REQUEST["cmbDiaI"];
+	$variables = "page=".$_GET["page"]."&cmbEstatusGuia=".$_REQUEST["cmbEstatusGuia"]."&cmbAnoI=".$_REQUEST["cmbAnoI"]."&cmbMesI=".$_REQUEST["cmbMesI"]."&cmbDiaI=".$_REQUEST["cmbDiaI"]."&cmbChofer=".$_REQUEST["cmbChofer"];
 	
 ?>	
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -56,6 +70,19 @@
                     		 	<input type="button" class="button" value="LIMPIAR BUSQUEDA" 
                     		 	 onclick="javascript:document.location.href = 'adm_guias.php';" />
                     		 	<?php } else { ?>
+                    		 	&nbsp;<strong>CHOFER</strong>&nbsp;
+                    		 	<select name="cmbChofer">
+                    		 		<option value=""></option>
+                    		 		<?php
+                    		 			$choferes = obtenerChoferes($link,1);
+                    		 			while($chofer = obtenerRegistro($choferes)) {
+                    		 		?>
+                    		 		<option value="<?php echo $chofer->id; ?>" 
+                    		 		 <?php if($_REQUEST["cmbChofer"]==$chofer->id) { ?> selected <?php } ?>>
+                    		 		<?php echo $chofer->nombre; ?>
+                    		 		</option>
+                    		 		<?php } ?>
+                    		 	</select>
                     		 	&nbsp;<strong>ESTATUS</strong>&nbsp;
                     		 	<select name="cmbEstatusGuia">
                     		 		<option value=""></option>
@@ -152,6 +179,10 @@
 						
 						if($_REQUEST["cmbEstatusGuia"]!="") {
 							$query .= " AND g.ind_guia=".$_REQUEST["cmbEstatusGuia"];
+						}				           
+						
+						if($_REQUEST["cmbChofer"]!="") {
+							$query .= " AND g.id_chofer=".$_REQUEST["cmbChofer"];
 						}		
 
 						$fechaI = $_REQUEST["cmbAnoI"]."-".$_REQUEST["cmbMesI"]."-".$_REQUEST["cmbDiaI"];
@@ -229,6 +260,12 @@
                                 <a href="adm_guias.php?action=MarcarEntregada&id=<?php echo $row->id; ?>&<?php echo $variables; ?>" title="Marcar como Entregada">
                                 	<img src="images/icons/accept.png" align="texttop" border="0"  
                                      onclick="javascript:return confirm('Esta seguro que desea marcar esta Guia como Entregada?');"/>
+                           		</a>
+                           		<?php } ?>
+                           		<?php if($row->ind_guia==2 && $row->ind_pagada==0) { ?>
+                                <a href="adm_actualizar_guia.php?id=<?php echo $row->id; ?>&action=RegistrarPagoChofer" title="Registrar Pago a Chofer">
+                                	<img src="images/icons/money.png" align="texttop" border="0"  
+                                     onclick="javascript:return confirm('Esta seguro que desea realizar esta accion?');"/>
                            		</a>
                            		<?php } ?>
                             </td>

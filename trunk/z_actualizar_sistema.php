@@ -6,20 +6,34 @@
 	// Modificar Usuario
 	if ($_POST["action"]=="Actualizar") {
 		
-		$query = "INSERT INTO ts_config(parametro,
-		                                codigo,
-		                                valor,
-		                                ind_activo,
-		                                fecha_creacion,
-		                                fecha_modificacion,
-		                                id_usuario) 
-		                         VALUES('IND_ENVIO',
-		                                6,
-		                                'CANCELADO',
-		                                1,
-		                                CURDATE(),
-		                                CURDATE(),
-		                                1)";
+		$query = "ALTER TABLE ts_usuario ADD ind_admin INT(1) default 0";
+		mysql_query($query, $link);
+		
+		$query = "UPDATE ts_usuario SET ind_admin = 1 WHERE id IN (1, 14,16)";
+		mysql_query($query, $link);
+		
+		$query = "ALTER TABLE ts_envio ADD nota_entrega TEXT";
+		mysql_query($query, $link);
+		
+		$query = "ALTER TABLE ts_guia ADD ind_pagada INT(1) default 0";
+		mysql_query($query, $link);
+		
+		$query = "ALTER TABLE ts_guia ADD fecha_pago DATE";
+		mysql_query($query, $link);
+		
+		$query = "ALTER TABLE ts_guia ADD forma_pago VARCHAR(200)";
+		mysql_query($query, $link);
+		
+		$query = "ALTER TABLE ts_guia ADD numero_pago VARCHAR(200)";
+		mysql_query($query, $link);
+		
+		$query = "ALTER TABLE ts_guia ADD banco_pago VARCHAR(200)";
+		mysql_query($query, $link);
+		
+		$query = "ALTER TABLE ts_guia ADD observaciones_pago VARCHAR(200)";
+		mysql_query($query, $link);
+		
+		$query = "ALTER TABLE ts_guia ADD flete_pago FLOAT";
 		mysql_query($query, $link);
 		
 		$action_result = "exitoActualizarSistema";

@@ -766,7 +766,8 @@
 				                           ind_activo,
 				                           fecha_creacion,
 				                           fecha_modificacion,
-				                           id_usuario)
+				                           id_usuario,
+				                           nota_entrega)
 				                    VALUES(".$envio->id_cliente.",
 				                           ".$envio->id_proveedor.",
 				                           ".$envio->id_destino.",
@@ -785,7 +786,8 @@
 				                           1,
 				                           CURDATE(),
 				                           CURDATE(),
-				                           ".$_SESSION["id_usuario"].")";
+				                           ".$_SESSION["id_usuario"].",
+				                           '".$envio->nota_entrega."')";
 	
 			mysql_query($query, $link);
 			
@@ -1198,8 +1200,13 @@
 		return $row->nombre;
 	}	
 	
-	function obtenerChoferes($link) {
-		$query = "SELECT * FROM ts_chofer WHERE ind_activo < 2 ORDER BY nombre";
+	function obtenerChoferes($link,$ind_activo="") {
+		if($ind_activo=="") { 
+			$query = "SELECT * FROM ts_chofer WHERE ind_activo < 2 ORDER BY nombre";
+		}
+		else {
+			$query = "SELECT * FROM ts_chofer WHERE ind_activo=".$ind_activo." ORDER BY nombre";
+		}
 		return mysql_query($query,$link);
 	}
 		
@@ -1471,6 +1478,23 @@
 		mysql_query($query, $link);
 		
 		return "exitoEliminarGuia";
+	}
+	
+	function registrarPagoChofer($link, $pago) {
+		
+		$query = "UPDATE ts_guia
+		             SET ind_pagada=1,
+		                 forma_pago='".$pago->forma_pago."', 
+		                 numero_pago='".$pago->numero."', 
+		                 banco_pago='".strtoupper($pago->banco)."',
+		                 fecha_pago='".$pago->fecha_pago."', 
+		                 observaciones_pago='".$pago->observaciones."',
+		                 flete_pago='".$pago->flete."',
+			             fecha_modificacion=CURDATE(),
+		                 id_usuario=".$_SESSION["id_usuario"]."  
+		           WHERE id=".$pago->id; echo $query;
+		mysql_query($query, $link);
+		return "exitoModificarGuia";
 	}
 	
 	// *********************************************************************************

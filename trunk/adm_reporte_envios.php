@@ -2,36 +2,7 @@
 <?php include("inc_seguridad.php"); ?>
 <?php include("inc_conectarse.php"); ?>
 <?php $_SESSION["modulo"] = "reportes"; ?>
-<?php include("inc_functions.php"); ?>	
-<?php 
-
-	if ($_POST["action"]!="" || $_GET["action"]!="") {
-	
-		if($_GET["action"]=="EnviarRuta") {
-			$action_result = enviarGuiaRuta($link,$_GET["id"]);
-		}
-				
-		if ($_POST["action"]=="Modificar") {
-			$guia->envios = $_POST["chkEnvio"];
-			$guia->id_chofer = $_POST["cmbChofer"];
-			$action_result = modificarGuia($link, $guia, $_POST["id"]); 
-		}
-				
-		if ($_GET["action"]=="MarcarEntregada") {
-			$id = $_GET["id"];
-			$action_result = marcarGuiaEntregada($link,$id);
-		}
-		
-		if($_GET["action"]=="Eliminar") {
-			$id = $_GET["id"];
-			$action_result = eliminarGuia($link,$id);
-		}	
-		
-	}
-	
-	$variables = "page=".$_GET["page"]."&cmbEstatusGuia=".$_REQUEST["cmbEstatusGuia"]."&cmbAnoI=".$_REQUEST["cmbAnoI"]."&cmbMesI=".$_REQUEST["cmbMesI"]."&cmbDiaI=".$_REQUEST["cmbDiaI"];
-	
-?>	
+<?php include("inc_functions.php"); ?>		
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <?php include("inc_metadata.php"); ?>

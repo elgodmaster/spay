@@ -196,7 +196,9 @@
 						           WHERE f.ind_activo < 2 "; 		
 
 						if($_REQUEST["txtBusqueda"]!="") {
-							$query .= " AND f.numero_factura LIKE '%".$_REQUEST["txtBusqueda"]."%' ";
+							$query .= " AND ( f.numero_factura LIKE '%".$_REQUEST["txtBusqueda"]."%' 
+							               OR p.nombre LIKE '%".$_REQUEST["txtBusqueda"]."%' 
+							               OR c.nombre LIKE '%".$_REQUEST["txtBusqueda"]."%' )";
 						}			           
 
 						if($_REQUEST["cmbEstatusFactura"]!="") {
