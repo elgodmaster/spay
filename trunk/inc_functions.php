@@ -863,7 +863,9 @@
 			                	WHERE id=".$envio->id;
 
 		mysql_query($query, $link); 
+		
 		$envio=NULL;
+		
 		return "exitoModificarEnvio";	
 	}	
 	

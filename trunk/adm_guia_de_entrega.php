@@ -183,19 +183,32 @@
                         </tr>
             			<tr>
                     		<td class="text" colspan="11"><hr></td>
-                		</tr>                        
+                		</tr>                   		<?php 
+							$query = "SELECT id_guia,
+							                 COUNT(1) facturas, 
+							                 SUM(bultos) bultos,
+							                 SUM(mercancia) mercancia,
+							                 SUM((flete/100)*mercancia) flete,
+							                 SUM(viaje) viaje,
+							                 SUM(peso*bskg) peso
+							            FROM ts_envio
+							           WHERE id_guia=".$guia->id." 
+							         GROUP BY id_guia";      
+							 $result2 = obtenerResultset($link, $query);
+							 $totales = obtenerRegistro($result2);         		
+                		?>                       
                         <tr>
                         	<td align="left">
                         		<strong>BULTOS</strong>
                             </td>
                         	<td align="center">
-                        		<strong><?php echo $guia->total_bultos; ?></strong>
+                        		<strong><?php echo $totales->bultos; ?></strong>
                             </td>
                         	<td align="center">
                         		<strong>FACTURAS</strong>
                             </td>
                         	<td align="center">
-                        		<strong><?php echo $guia->total_facturas; ?></strong>
+                        		<strong><?php echo $totales->facturas; ?></strong>
                             </td>
                         	<td align="left">
                         		<strong>&nbsp;</strong>
@@ -207,13 +220,13 @@
                         		<strong>TOTAL Bs.</strong>
                             </td>
                         	<td align="right">
-                        		<strong><?php echo  number_format($guia->total_mercancia,2,",",".");; ?></strong>
+                        		<strong><?php echo  number_format($totales->mercancia,2,",",".");; ?></strong>
                             </td>
                         	<td align="right">
                         		<strong>&nbsp;</strong>
                             </td>
                         	<td align="right">
-                        		<strong><?php echo  number_format($guia->total_flete,2,",",".");; ?></strong>
+                        		<strong><?php echo  number_format(($totales->flete + $totales->peso + $totales->viaje),2,",",".");; ?></strong>
                             </td>
                         </tr>
             			<tr>
