@@ -63,7 +63,22 @@
                     <strong style="padding-right:5px">TELEFONOS</strong>
 					<input name="txtTelefono" type="text" size="42" style="text-transform:uppercase" 
                      value="<?php echo $proveedor->telefono; ?>" disabled />
-                    <br /><br />                    		           
+                    <br /><br />      													
+                    <strong style="padding-right:5px">CORREO ELECTRONICO</strong>
+					<input name="txtEmail" type="text" size="74" maxlength="120" style="text-transform:uppercase" 
+                     value="<?php echo $proveedor->email; ?>" disabled />   
+                    <br /><br />
+                    <strong style="padding-right:5px">RETIENE IVA</strong>
+                    <select name="cmbIVA" disabled>
+                    	<option value=1 <?php if ($proveedor->iva==1) { ?> selected <?php }?>>SI</option>
+                    	<option value=0 <?php if ($proveedor->iva==0) { ?> selected <?php }?>>NO</option>
+                    </select> 
+                    &nbsp;           
+                    <strong style="padding-right:5px">RETIENE ISLR</strong>
+                    <select name="cmbISLR" disabled>
+                    	<option value=1 <?php if ($proveedor->islr==1) { ?> selected <?php }?>>SI</option>
+                    	<option value=0 <?php if ($proveedor->islr==0) { ?> selected <?php }?>>NO</option>
+                    </select>                      		           
                 	<hr />
                 <p>
                 	<strong style="padding-right:5px">ESTATUS</strong>

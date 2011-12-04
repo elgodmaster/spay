@@ -12,6 +12,8 @@
 		$datos->seq_numero_guia = $_POST["txtSeqNumeroGuia"];
 		$datos->seq_relacion = $_POST["txtSeqRelacion"];
 		$datos->seq_devolucion = $_POST["txtSeqDevolucion"];
+		$datos->riva = $_POST["txtRetencionIVA"];
+		$datos->rislr = $_POST["txtRetencionISLR"];
 		$action_result = modificarDatosSistema($link, $datos);
 	}
 	
@@ -22,6 +24,8 @@
 	$seq_numero_guia = obtenerSeqNumeroGuia($link);
 	$seq_relacion = obtenerSeqRelacion($link);
 	$seq_devolucion = obtenerSeqDevolucion($link);
+	$riva = obtenerRetencionIVA($link);
+	$rislr = obtenerRetencionISLR($link);
 ?>	
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
@@ -57,7 +61,17 @@
 					<input name="txtSeguro" type="text" size="1" style="text-transform:uppercase; text-align:right;" 
                      value="<?php echo $seguro; ?>" /> 									       
                     <strong style="padding-right:5px">%</strong>    
-                    <br /><br />      													
+                    <br /><br />      		
+                    <strong style="padding-right:5px">RETENCION IVA</strong>
+					<input name="txtRetencionIVA" type="text" size="1" style="text-transform:uppercase; text-align:right;" 
+                     value="<?php echo $riva; ?>" /> 									       
+                    <strong style="padding-right:5px">%</strong>    
+                    &nbsp;	    													
+                    <strong style="padding-right:5px">RETENCION ISLR</strong>
+					<input name="txtRetencionISLR" type="text" size="1" style="text-transform:uppercase; text-align:right;" 
+                     value="<?php echo $rislr; ?>" />  						       
+                    <strong style="padding-right:5px">%</strong>    										
+                    <br /><br /> 
                     <strong style="padding-right:5px">SECUENCIA NOTA DE ENTREGA</strong>
 					<input name="txtSeqNotaEntrega" type="text" size="1" style="text-transform:uppercase; text-align:right;" 
                      value="<?php echo $seq_nota_entrega; ?>" />    

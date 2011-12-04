@@ -42,6 +42,7 @@
 					<strong>Haga <a href="<?php echo $guia_tmp; ?>">click aqui</a> para ver la Gu&iacute;a</strong>    
 					</span>
 					<?php } ?>  
+					<!-- 
                     <table>
             			<tr>
                     		<td colspan="6">
@@ -70,7 +71,8 @@
                     		</form>
                     		</td>
                 		</tr>
-                	</table>  
+                	</table>
+                	 -->  
 					<?php include("inc_lists.php"); ?>
 					<h3>Env&iacute;os Disponibles</h3>                    
 					<form name="frmG" action="adm_guias.php" method="post" enctype="multipart/form-data" 
@@ -141,7 +143,7 @@
                                  <?php if(contieneEnvio($envios_arr, $row->id)) { ?> checked <?php } ?> />
                 			</td>
                 			<td <?php if($inactiva) {?> style="color:#999;" <?php } ?>>
-								<?php echo obtenerProveedorStr($link, $row->id_proveedor); ?>
+								<?php echo substr(obtenerProveedorStr($link, $row->id_proveedor),0,20); ?>
                     		</td>
                 			<td <?php if($inactiva) {?> style="color:#999;" <?php } ?> align="center">
 								<?php echo $row->bultos; ?>
@@ -153,10 +155,10 @@
 								<?php echo str_pad($row->factura, 6, "0", STR_PAD_LEFT); ?>
                     		</td>
                 			<td <?php if($inactiva) {?> style="color:#999;" <?php } ?>>
-								<?php echo obtenerClienteStr($link, $row->id_cliente); ?>
+								<?php echo substr(obtenerClienteStr($link, $row->id_cliente),0,20); ?>
                     		</td> 
                 			<td <?php if($inactiva) {?> style="color:#999;" <?php } ?>>
-								<?php echo obtenerDestinoStr($link, $row->id_destino); ?>
+								<?php echo substr(obtenerDestinoStr($link, $row->id_destino),0,15); ?>
                     		</td>                   		
                     		<td align="right">
 								<?php echo number_format($row->mercancia,2,",","."); ?>

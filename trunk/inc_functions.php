@@ -326,6 +326,20 @@
 		return $row->valor;	
 	}
 	
+	function obtenerRetencionIVA($link) {
+		$query = "SELECT * FROM ts_config WHERE parametro='RIVA'";
+		$result = mysql_query($query,$link);
+		$row = mysql_fetch_object($result);
+		return $row->valor;	
+	}
+	
+	function obtenerRetencionISLR($link) {
+		$query = "SELECT * FROM ts_config WHERE parametro='RISLR'";
+		$result = mysql_query($query,$link);
+		$row = mysql_fetch_object($result);
+		return $row->valor;	
+	}
+	
 	function modificarDatosSistema($link, $datos) { 
 		
 		// IVA
@@ -352,6 +366,14 @@
 		// SeqDevolucion
 		$query = "UPDATE ts_config SET valor=".$datos->seq_devolucion." WHERE parametro='SEQ_DEVOLUCION'";
 		mysql_query($query,$link);			
+		
+		// Retencion IVA
+		$query = "UPDATE ts_config SET valor=".$datos->riva." WHERE parametro='RIVA'";
+		mysql_query($query,$link);
+		
+		// Retencion ISLR
+		$query = "UPDATE ts_config SET valor=".$datos->rislr." WHERE parametro='RISLR'";
+		mysql_query($query,$link);
 
 		return "exitoModificarDatosSistema";
 	}
@@ -428,7 +450,10 @@
 			                                 ind_activo,
 			                                 fecha_creacion,
 			                                 fecha_modificacion,
-			                                 id_usuario) 
+			                                 id_usuario,
+			                                 email,
+			                                 iva,
+			                                 islr) 
 			                         VALUES ('".$proveedor->rif."',
 			                                 '".$proveedor->nombre."',
 			                                 '".$proveedor->direccion."',
@@ -439,7 +464,10 @@
 			                                 1,
 			                                 CURDATE(),
 			                                 CURDATE(),
-			                                 ".$_SESSION["id_usuario"].")";
+			                                 ".$_SESSION["id_usuario"].",
+			                                 '".$proveedor->email."',
+			                                 '".$proveedor->iva."',
+			                                 '".$proveedor->islr."')"; echo $query;
 			
 			mysql_query($query, $link);
 			return "exitoAgregarProveedor";
@@ -458,8 +486,11 @@
 		                                flete=".$proveedor->flete.",
 		                                seguro='".$proveedor->seguro."',
 		                                fecha_modificacion=CURDATE(),
-		                                id_usuario=".$_SESSION["id_usuario"]."  
-		                          WHERE id=".$proveedor->id;
+		                                id_usuario=".$_SESSION["id_usuario"].",
+		                                email='".$proveedor->email."',
+		                                iva='".$proveedor->iva."',
+		                                islr='".$proveedor->islr."'
+		                          WHERE id=".$proveedor->id; echo $query;
 		
 		mysql_query($query, $link);
 		return "exitoModificarProveedor";	
@@ -558,7 +589,10 @@
 			                                 ind_activo,
 			                                 fecha_creacion,
 			                                 fecha_modificacion,
-			                                 id_usuario) 
+			                                 id_usuario,
+			                                 email,
+			                                 iva,
+			                                 islr) 
 			                         VALUES ('".$cliente->rif."',
 			                                 '".$cliente->nombre."',
 			                                 '".$cliente->direccion."',
@@ -570,7 +604,10 @@
 			                                 1,
 			                                 CURDATE(),
 			                                 CURDATE(),
-			                                 ".$_SESSION["id_usuario"].")";
+			                                 ".$_SESSION["id_usuario"].",
+			                                 '".$cliente->email."',
+			                                 '".$cliente->iva."',
+			                                 '".$cliente->islr."')"; 
 			
 			mysql_query($query, $link);
 			return "exitoAgregarCliente";
@@ -590,8 +627,11 @@
 		                                flete=".$cliente->flete.",
 		                                seguro='".$cliente->seguro."',
 		                                fecha_modificacion=CURDATE(),
-		                                id_usuario=".$_SESSION["id_usuario"]."  
-		                          WHERE id=".$cliente->id;
+		                                id_usuario=".$_SESSION["id_usuario"].",
+		                                email='".$cliente->email."',
+		                                iva='".$cliente->iva."',
+		                                islr='".$cliente->islr."'
+		                          WHERE id=".$cliente->id;   
 		
 		mysql_query($query, $link);
 		return "exitoModificarCliente";	

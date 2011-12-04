@@ -62,7 +62,7 @@
 		}
 	}
 
-	$variables = "page=".$_GET["page"]."&txtBusqueda=".$_REQUEST["txtBusqueda"]."&cmbEstatusFactura=".$_REQUEST["cmbEstatusFactura"]."&cmbAnoI=".$_REQUEST["cmbAnoI"]."&cmbMesI=".$_REQUEST["cmbMesI"]."&cmbDiaI=".$_REQUEST["cmbDiaI"];
+	$variables = "page=".$_REQUEST["page"]."&txtBusqueda=".$_REQUEST["txtBusqueda"]."&cmbEstatusFactura=".$_REQUEST["cmbEstatusFactura"]."&cmbAnoI=".$_REQUEST["cmbAnoI"]."&cmbMesI=".$_REQUEST["cmbMesI"]."&cmbDiaI=".$_REQUEST["cmbDiaI"];
 	
 ?>	
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">

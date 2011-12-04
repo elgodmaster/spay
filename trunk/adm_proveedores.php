@@ -18,6 +18,9 @@
 			$proveedor->telefono = strtoupper($_POST["txtTelefono"]);
 			$proveedor->flete = $_POST["txtFlete"];
 			$proveedor->seguro = $_POST["cmbSeguro"];
+			$proveedor->email = $_POST["txtEmail"];
+			$proveedor->iva = $_POST["cmbIVA"];
+			$proveedor->islr = $_POST["cmbISLR"];
 
 			$action_result = agregarProveedor($link, $proveedor);
 			$proveedor=NULL;
@@ -37,6 +40,9 @@
 			$proveedor->telefono = strtoupper($_POST["txtTelefono"]);
 			$proveedor->flete = $_POST["txtFlete"];
 			$proveedor->seguro = $_POST["cmbSeguro"];
+			$proveedor->email = $_POST["txtEmail"];
+			$proveedor->iva = $_POST["cmbIVA"];
+			$proveedor->islr = $_POST["cmbISLR"];
 
 			$action_result = modificarProveedor($link, $proveedor);
 			$proveedor=NULL;
@@ -254,7 +260,23 @@
                     <strong style="padding-right:5px">TELEFONOS</strong>
 					<input name="txtTelefono" type="text" size="42" style="text-transform:uppercase" 
                      value="<?php echo $proveedor->telefono; ?>" />
-                    <br /><br />                   
+                    <br /><br />     													
+                    <strong style="padding-right:5px">CORREO ELECTRONICO</strong>
+					<input name="txtEmail" type="text" size="74" maxlength="120" style="text-transform:uppercase" 
+                     value="<?php echo $proveedor->email; ?>" />   
+                    <br /><br />
+                    <strong style="padding-right:5px">RETIENE IVA</strong>
+                    <select name="cmbIVA">
+                    	<option value=1 <?php if ($proveedor->iva==1) { ?> selected <?php }?>>SI</option>
+                    	<option value=0 <?php if ($proveedor->iva==0) { ?> selected <?php }?>>NO</option>
+                    </select> 
+                    &nbsp;           
+                    <strong style="padding-right:5px">RETIENE ISLR</strong>
+                    <select name="cmbISLR">
+                    	<option value=1 <?php if ($proveedor->islr==1) { ?> selected <?php }?>>SI</option>
+                    	<option value=0 <?php if ($proveedor->islr==0) { ?> selected <?php }?>>NO</option>
+                    </select>   
+                    <br /><br />              
                     <hr />                                                   
                     <p>
                     <?php if($_GET["action"]=="Modificar") { ?>

@@ -19,6 +19,9 @@
 			$cliente->id_destino = $_POST["cmbDestino"];
 			$cliente->flete = $_POST["txtFlete"];
 			$cliente->seguro = $_POST["cmbSeguro"];
+			$cliente->email = $_POST["txtEmail"];
+			$cliente->iva = $_POST["cmbIVA"];
+			$cliente->islr = $_POST["cmbISLR"];
 
 			$action_result = agregarCliente($link, $cliente);
 			$cliente=NULL;
@@ -39,6 +42,9 @@
 			$cliente->id_destino = $_POST["cmbDestino"];
 			$cliente->flete = $_POST["txtFlete"];
 			$cliente->seguro = $_POST["cmbSeguro"];
+			$cliente->email = $_POST["txtEmail"];
+			$cliente->iva = $_POST["cmbIVA"];
+			$cliente->islr = $_POST["cmbISLR"];
 
 			$action_result = modificarCliente($link, $cliente);
 			$cliente=NULL;
@@ -255,7 +261,23 @@
                     &nbsp;                     	 														
                     <strong style="padding-right:5px">TELEFONOS</strong>
 					<input name="txtTelefono" type="text" size="42" style="text-transform:uppercase" 
-                     value="<?php echo $cliente->telefono; ?>" />
+                     value="<?php echo $cliente->telefono; ?>" />  	
+                    <br /><br />													
+                    <strong style="padding-right:5px">CORREO ELECTRONICO</strong>
+					<input name="txtEmail" type="text" size="74" maxlength="120" style="text-transform:uppercase" 
+                     value="<?php echo $cliente->email; ?>" />   
+                    <br /><br />
+                    <strong style="padding-right:5px">RETIENE IVA</strong>
+                    <select name="cmbIVA">
+                    	<option value=1 <?php if ($cliente->iva==1) { ?> selected <?php }?>>SI</option>
+                    	<option value=0 <?php if ($cliente->iva==0) { ?> selected <?php }?>>NO</option>
+                    </select> 
+                    &nbsp;           
+                    <strong style="padding-right:5px">RETIENE ISLR</strong>
+                    <select name="cmbISLR">
+                    	<option value=1 <?php if ($cliente->islr==1) { ?> selected <?php }?>>SI</option>
+                    	<option value=0 <?php if ($cliente->islr==0) { ?> selected <?php }?>>NO</option>
+                    </select>   
                     <br /><br />
 					<strong style="padding-right:5px">DESTINO DE LOS ENVIOS</strong>
                     <select name="cmbDestino">
