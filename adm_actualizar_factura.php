@@ -21,7 +21,7 @@
                 <?php include("inc_mensajes_crud.php"); ?>
                 </p>          
                 <?php if($_GET["action"]=="MarcarCobrada") { ?>    			
-				<form name="frmSP" action="adm_facturas.php?id=<?php echo $_GET["id"]; ?>" 
+				<form name="frmSP" action="adm_facturas.php?id=<?php echo $_GET["id"]; ?>&page=<?php echo $_GET["page"]; ?>" 
 				 method="post" enctype="multipart/form-data" 
                  onsubmit="return validate_factura_cobrada_form(this);">	
                     <p>
@@ -104,7 +104,7 @@
 				</form>
 				<?php } ?>
                 <?php if($_GET["action"]=="Anular") { ?>    			
-				<form name="anular" action="adm_facturas.php?id=<?php echo $_GET["id"]; ?>" 
+				<form name="anular" action="adm_facturas.php?id=<?php echo $_GET["id"]; ?>&page=<?php echo $_GET["page"]; ?>" 
 				 method="post" enctype="multipart/form-data" 
                  onSubmit="return validate_factura_anulada_form(anular);">	
                     <p>

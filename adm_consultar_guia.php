@@ -24,7 +24,7 @@
 		$action_result = marcarEnvioDevuelto($link, $id, $motivo);
 	}
 	
-	$variables = "page=".$_GET["page"]."&cmbEstatusGuia=".$_REQUEST["cmbEstatusGuia"]."&cmbAnoI=".$_REQUEST["cmbAnoI"]."&cmbMesI=".$_REQUEST["cmbMesI"]."&cmbDiaI=".$_REQUEST["cmbDiaI"];
+	$variables = "page=".$_REQUEST["page"]."&cmbEstatusGuia=".$_REQUEST["cmbEstatusGuia"]."&cmbAnoI=".$_REQUEST["cmbAnoI"]."&cmbMesI=".$_REQUEST["cmbMesI"]."&cmbDiaI=".$_REQUEST["cmbDiaI"]."&cmbChofer=".$_REQUEST["cmbChofer"];
 	
 ?>	
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
