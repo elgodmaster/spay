@@ -14,7 +14,7 @@
 	$total_iva = $total_flete*($factura->iva/100);
 	$total_seguro = $factura->total_mercancia*($factura->seguro/100);
 ?>	
-   <div style="padding-bottom:76px">&nbsp;</div>
+   <div style="padding-bottom:22px">&nbsp;</div>
    <div style="padding-left:700px; 
     font-size:22px; font-family:Arial, Helvetica, sans-serif;">
 	 <?php echo mostrarFecha($factura->fecha_creacion); ?>
@@ -39,7 +39,7 @@
     font-size:18px; font-family:Arial, Helvetica, sans-serif;">
   	 <?php echo $cliente->telefono; ?>
    </span> 	       
-   <div align="centered" style="padding:48px 0px 40px 145px;;">
+   <div align="centered" style="padding:48px 0px 35px 145px;;">
    </div>      
    <span align="centered" style="padding:14px 0px 0px 144px; 
     font-size:18px; font-family:Arial, Helvetica, sans-serif;">

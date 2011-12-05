@@ -14,49 +14,49 @@
 	$total_iva = $total_flete*($factura->iva/100);
 	$total_seguro = $factura->total_mercancia*($factura->seguro/100);
 ?>				
-   <div style="padding-bottom:76px">&nbsp;</div>
+   <div style="padding-bottom:22px">&nbsp;</div>
    <div style="padding-left:700px; 
-    font-size:22px; font-family:Arial, Helvetica, sans-serif;">
+    font-size:22px; font-family:Verdana;">
 	 <?php echo mostrarFecha($factura->fecha_creacion); ?>
    </div>    
    <div align="centered" style="padding:4px 0px 0px 690px;
-    font-size:22px; font-family:Arial, Helvetica, sans-serif;">
+    font-size:22px; font-family:Verdana;">
 	 <?php echo $cliente->rif;?>
    </div>       
    <div align="centered" style="padding:72px 0px 0px 160px; 
-    font-size:18px; font-family:Arial, Helvetica, sans-serif;">
+    font-size:18px; font-family:Verdana;">
   	 <?php echo $cliente->nombre; ?>
    </div>          
    <div align="centered" style="padding:21px 0px 17px 100px; 
-    font-size:12px; font-family:Arial, Helvetica, sans-serif;">
+    font-size:12px; font-family:Verdana;">
   	 <?php echo substr($cliente->direccion,0,120); ?>
    </div>      
    <span align="centered" style="padding:17px 0px 0px 15px; 
-    font-size:18px; font-family:Arial, Helvetica, sans-serif;">
+    font-size:18px; font-family:Verdana;">
   	 <?php echo $cliente->ciudad; ?>
    </span> 	 
    <span align="centered" style="padding:17px 0px 0px 360px; 
-    font-size:18px; font-family:Arial, Helvetica, sans-serif;">
+    font-size:18px; font-family:Verdana;">
   	 <?php echo $cliente->telefono; ?>
    </span> 	       
-   <div align="centered" style="padding:48px 0px 20px 145px; font-size:12px; ">
+   <div align="centered" style="padding:46px 0px 30px 145px; font-size:12px; ">
   	 <?php echo $factura->proveedor; ?>
    </div>      
    <span align="centered" style="padding:14px 0px 0px 144px; 
-    font-size:18px; font-family:Arial, Helvetica, sans-serif;">
+    font-size:18px; font-family:Verdana;">
   	 <?php echo $factura->factura; ?>
    </span> 	 
    <span align="centered" style="padding:14px 0px 0px 340px; 
-    font-size:18px; font-family:Arial, Helvetica, sans-serif;">
+    font-size:18px; font-family:Verdana;">
   	 <?php echo $factura->total_bultos; ?>
    </span>  
    <div>&nbsp;</div> 
    <span align="centered" style="padding:0px 0px 0px 120px; font-weight:bold; 
-    font-size:18px; font-family:Arial, Helvetica, sans-serif;">
+    font-size:18px; font-family:Verdana;">
   	 <?php echo number_format($factura->total_mercancia,2,",","."); ?>
    </span> 	 
    <span align="centered" style="padding:0px 0px 0px 197px; 
-    font-size:18px; font-family:Arial, Helvetica, sans-serif;">
+    font-size:18px; font-family:Verdana;">
 		<?php
          if($factura->flete!=0) {  
           echo number_format($factura->flete,2,",",".")." %"; 
@@ -67,7 +67,7 @@
         ?>
    </span>  
    <span width="150px" align="right" style="padding:17px 0px 0px 185px; font-weight:bold;
-    font-size:18px; font-family:Arial, Helvetica, sans-serif;">
+    font-size:18px; font-family:Verdana;">
 		<?php
           if($total_flete_mercancia!=0 || $total_viaje!=0) { 
             echo number_format($total_flete,2,",","."); 
@@ -76,7 +76,7 @@
    </span>  
    <div>&nbsp;</div>    
    <span align="centered" style="padding:7px 0px 0px 130px;  
-    font-size:18px; font-family:Arial, Helvetica, sans-serif;">
+    font-size:18px; font-family:Verdana;">
 		<?php 
         	if($factura->total_peso!=0) { 
           		echo number_format($factura->total_peso,2,",",".")." Kg";	
@@ -84,7 +84,7 @@
 		?>
    </span> 	 
    <span align="centered" style="padding:15px 0px 0px 215px; 
-    font-size:18px; font-family:Arial, Helvetica, sans-serif;">
+    font-size:18px; font-family:Verdana;">
 		<?php
         	if($factura->bskg!=0) { 
             	echo "  ".number_format($factura->bskg,2,",",".")." Bs/Kg"; 
@@ -92,7 +92,7 @@
         ?>
    </span>  
    <span width="150px" align="right" style="padding:15px 0px 0px 160px; font-weight:bold;
-    font-size:18px; font-family:Arial, Helvetica, sans-serif;">
+    font-size:18px; font-family:Verdana;">
 		<?php
         	if($total_flete_peso!=0) { 
             	echo "  ".number_format($total_flete_peso,2,",","."); 
@@ -101,11 +101,11 @@
    </span>   
    <div>&nbsp;</div>    
    <span align="centered" style="padding:7px 0px 0px 50px;  
-    font-size:18px; font-family:Arial, Helvetica, sans-serif;">
+    font-size:18px; font-family:Verdana;">
 		<?php echo number_format($factura->iva,2,",",".")." %"; ?>
    </span> 	 
    <span align="centered" style="padding:15px 0px 0px 295px; 
-    font-size:18px; font-family:Arial, Helvetica, sans-serif;">
+    font-size:18px; font-family:Verdana;">
 		<?php 
 			if($total_flete_peso!=0) { 
 				echo "  ".number_format($total_flete,2,",","."); 
@@ -115,8 +115,8 @@
 			}
 		?>
    </span>  
-   <span width="150px" align="right" style="padding:15px 0px 0px 170px; font-weight:bold;
-    font-size:18px; font-family:Arial, Helvetica, sans-serif;">
+   <span width="150px" align="right" style="padding:15px 0px 10px 170px; font-weight:bold;
+    font-size:18px; font-family:Verdana;">
 		<?php  
 			if($total_flete_peso!=0) { 
 				echo "  ".number_format($total_iva,2,",","."); 
@@ -129,15 +129,15 @@
    </span>       
    <div>&nbsp;</div>    
    <span align="centered" style="padding:7px 0px 0px 150px;  
-    font-size:18px; font-family:Arial, Helvetica, sans-serif;">
+    font-size:18px; font-family:Verdana;">
 		<?php 
 			if($factura->seguro!="") {    
             	echo number_format($factura->seguro,2,",",".")." %"; 
       		}		
 		?>
-   </span> 	 
+   </span> 	  
    <span align="centered" style="padding:15px 0px 0px 190px; 
-    font-size:18px; font-family:Arial, Helvetica, sans-serif;">
+    font-size:18px; font-family:Verdana;">
 		<?php 
 			if($factura->seguro!="") {    
             	if($total_flete_peso!=0) { 
@@ -151,7 +151,7 @@
 		?>
    </span>  
    <span width="150px" align="right" style="padding:15px 0px 0px 170px; font-weight:bold;
-    font-size:18px; font-family:Arial, Helvetica, sans-serif;">
+    font-size:18px; font-family:Verdana;">
 		<?php 
 			if($factura->seguro!="") {    
             	if($total_flete_peso!=0) { 
@@ -165,7 +165,7 @@
 		?>
    </span>      
    <div align="centered" style="padding:23px 0px 0px 720px; font-weight:bold; 
-    font-size:18px; font-family:Arial, Helvetica, sans-serif;">
+    font-size:18px; font-family:Verdana;">
   	 <?php
      	$valor = $total_flete;
         $valor += $total_seguro;
