@@ -157,7 +157,7 @@
                 			<td width="80" align="right"><strong>MERCANCIA</strong></td>
                 			<td width="60" align="right"><strong>FLETE</strong></td>
                     		<td width="80" style="padding-left:15px"><strong>ESTATUS</strong></td>
-                            <td width="100"><strong>ACCIONES</strong></td>
+                            <td width="120"><strong>ACCIONES</strong></td>
                 		</tr>
             			<tr>
                     		<td class="text" colspan="11"><hr></td>
