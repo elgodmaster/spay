@@ -69,9 +69,11 @@
                 			<td width="400" align="left"><strong>CLIENTE</strong></td>
                 			<td width="110" align="left"><strong>DESTINO</strong></td>
                 			<td width="90" align="left"><strong>PAGADERO</strong></td>
+                			<?php if($_GET["tipo"]=="oficina") { ?>
                     		<td width="70" align="right"><strong>MERCANCIA</strong></td>
                     		<td width="50" align="center"><strong>%</strong></td>
                             <td width="50" align="right"><strong>FLETE</strong></td>
+                            <?php } ?>
                 		</tr>
             			<tr>
                     		<td class="text" colspan="11"><hr></td>
@@ -130,7 +132,8 @@
                     		</td>    
                 			<td <?php if($inactiva) {?> style="color:#999;" <?php } ?> align="left">
 								<?php echo pagadero($row->tipo_envio); ?>
-                    		</td>                 		
+                    		</td>
+                			<?php if($_GET["tipo"]=="oficina") { ?>
                     		<td align="right">
 								<?php echo number_format($row->mercancia,2,",","."); ?>
                     		</td>
@@ -139,7 +142,8 @@
                     		</td>		                		
                     		<td align="right">
 								<?php echo number_format($valor,2,",","."); ?>
-                    		</td> 
+                    		</td>
+                    		<?php } ?> 
             			</tr>		
 						<?php } ?>
                         
@@ -148,7 +152,8 @@
                         </tr>
             			<tr>
                     		<td class="text" colspan="11"><hr></td>
-                		</tr>                    		<?php 
+                		</tr>                    		
+                		<?php 
 							$query = "SELECT id_guia,
 							                 COUNT(1) facturas, 
 							                 SUM(bultos) bultos,
@@ -182,29 +187,19 @@
                         		<strong>&nbsp;</strong>
                             </td>
                         	<td align="left">
-                        		<strong>TOTAL Bs.</strong>
+                        		<?php if($_GET["tipo"]=="oficina") { ?><strong>TOTAL Bs.</strong><?php } ?>
                             </td>
+                            <?php if($_GET["tipo"]=="oficina") { ?>
                         	<td align="right">
-                        		<strong>
-                        		<?php 
-									if(!$_GET["valor"]=="no") {
-                        				echo  number_format($totales->mercancia,2,",",".");
-									} 
-                        		?>
-                        		</strong>
+                        		<strong><?php echo  number_format($totales->mercancia,2,",","."); ?></strong>
                             </td>
                         	<td align="right">
                         		<strong>&nbsp;</strong>
                             </td>
                         	<td align="right">
-                        		<strong>
-                        		<?php 
-									if(!$_GET["flete"]=="no") {
-										echo  number_format(($totales->flete + $totales->peso + $totales->viaje),2,",","."); 
-									}
-								?>
-								</strong>
+                        		<strong><?php echo  number_format(($totales->flete + $totales->peso + $totales->viaje),2,",","."); ?></strong>
                             </td>
+                            <?php } ?>
                         </tr>
             			<tr>
                     		<td class="text" colspan="11"><hr></td>

@@ -1148,7 +1148,7 @@
 	}	
 	
 	function obtenerDestinos($link) {
-		$query = "SELECT * FROM ts_destino WHERE ind_activo < 2 ORDER BY nombre";
+		$query = "SELECT * FROM ts_destino WHERE ind_activo = 1 ORDER BY nombre";
 		return mysql_query($query,$link);
 	}
 		

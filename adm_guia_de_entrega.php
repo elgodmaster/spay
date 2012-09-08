@@ -23,24 +23,14 @@
 					
 				<h1>Gu&iacute;a de Entrega</h1>
 				<div align="left" style="padding:0px 0px 20px 15px">
-				<a href="adm_guia_de_entrega_imp.php?id=<?php echo $guia->id; ?>" target="_blank">
+				<a href="adm_guia_de_entrega_imp.php?id=<?php echo $guia->id; ?>&tipo=oficina" target="_blank">
                 	<img src="images/icons/printer.png" align="texttop" border="0" />
-                    <strong>Versi&oacute;n Imprimible</strong>
+                    <strong>Versi&oacute;n Imprimible (Oficina)</strong>
               	</a>
               	<br/>
-				<a href="adm_guia_de_entrega_imp.php?id=<?php echo $guia->id; ?>&flete=no&valor=no" target="_blank">
+				<a href="adm_guia_de_entrega_imp.php?id=<?php echo $guia->id; ?>&tipo=chofer" target="_blank">
                 	<img src="images/icons/printer.png" align="texttop" border="0" />
-                    <strong>Versi&oacute;n Imprimible (Sin Total Mercancia ni Flete)</strong>
-              	</a>
-              	<br/>
-				<a href="adm_guia_de_entrega_imp.php?id=<?php echo $guia->id; ?>&valor=no" target="_blank">
-                	<img src="images/icons/printer.png" align="texttop" border="0" />
-                    <strong>Versi&oacute;n Imprimible (Sin Total Mercancia)</strong>
-              	</a>
-              	<br/>
-				<a href="adm_guia_de_entrega_imp.php?id=<?php echo $guia->id; ?>&flete=no" target="_blank">
-                	<img src="images/icons/printer.png" align="texttop" border="0" />
-                    <strong>Versi&oacute;n Imprimible (Sin Total Flete)</strong>
+                    <strong>Versi&oacute;n Imprimible (Chofer)</strong>
               	</a>
               	
 				</div>
